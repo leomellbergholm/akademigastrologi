@@ -2,25 +2,23 @@ psql -U ah8140 -d ah8140 -h pgserver.mah.se
 
 \c ah8140
 drop database if exists akademigastrologi;
-create database akademigastrologi
+create database akademigastrologi;
 
-drop table if EXISTS ;
-drop table if EXISTS ;
-drop table if EXISTS ;
-drop table if EXISTS ;
-drop table if EXISTS ;
+drop table if EXISTS users;
+drop table if EXISTS recipes;
+drop table if EXISTS ingredients;
 
 \c akademigastrologi;
 
 create table users(
- userID serial,
- recipeID serial,
+ userID serial UNIQUE,
+ recipeID serial UNIQUE,
  firstname varchar(20),
  lastname varchar(30),
  username varchar(20),
  email varchar(30),
  password varchar(20),
- primary key(userID, recipeID),
+ primary key (userID, recipeID)
  );
 
 create table recipes(
@@ -38,7 +36,7 @@ create table recipes(
  recipeID int,
  ingridient_name varchar(30),
  quantity int,
- measurement varchar(10)
+ measurement varchar(10),
  primary key (recipeID),
  foreign key (recipeID) references users (recipeID)
  ); 
