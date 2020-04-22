@@ -1,6 +1,6 @@
 body {
     font-family: 'Fredericka the Great', cursive;
-    
+    padding-top: 50px;
 }
 
 button:focus {
@@ -67,4 +67,53 @@ button:focus {
 .btn-twitter {
     background-color: #42AEEC;
     color: #fff;
+}
+
+main {
+    padding-top: 50px;
+}
+
+.forum {
+    border: 1px solid #cecece;
+    /* border-bottom: none; */
+    height: 80px;
+    padding-top: 10px;
+    margin-bottom: 10px;
+}
+
+.forum_stats {
+    font-size: 0.8em;
+}
+
+.question, .answers {
+    border: 1px solid #cecece;
+    border-radius: 3px;
+    min-height: 50px;
+    width: 100%;
+    padding: 20px;
+    margin-bottom: 50px;
+}
+
+.answers {
+    margin-bottom: 0;
+    border-radius: 0;
+    border-bottom: none;
+}
+
+.answers:last-child {
+    border-bottom: 1px solid #cecece;
+    margin-bottom: 50px;
+}
+
+.profile_img {
+    display: block;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #42AEEC;
+    margin: 0 20px 20px;
+}
+
+form, textarea {
+    width: 100%;
 }
