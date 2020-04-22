@@ -4,8 +4,9 @@
 import psycopg2
 #Modul som hjälper till att skapa ett slumpmässigt ID
 import random
-#
-from bottle import route, run, template, request, static_file, redirect
+#Installerar och importerar ramverket Flask
+pip install Flask
+from flask import flask
 
 #Huvudfunktionen
 def main():
