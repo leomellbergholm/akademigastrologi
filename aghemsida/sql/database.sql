@@ -12,14 +12,12 @@ drop table if EXISTS ingredients;
 
 create table users(
  userID serial UNIQUE,
- recipeID int,
  firstname varchar(20),
  lastname varchar(30),
  username varchar(20),
  email varchar(30),
  password varchar(20),
  primary key (userID),
- foreign key (recipeID) references recipes (recipeID)
  );
 
 create table recipes(
@@ -28,7 +26,7 @@ create table recipes(
  title varchar(30),
  ingress varchar(250),
  instructions text,
- primary key (recipeID, userID),
+ primary key (recipeID),
  foreign key (userID) references users (userID)
  ); 
 
@@ -37,8 +35,7 @@ create table recipes(
  ingridient_name varchar(30),
  quantity int,
  measurement varchar(10),
- primary key (recipeID),
- foreign key (recipeID) references users (recipeID)
+ foreign key (recipeID) references recipes (recipeID)
  );
 
  insert into users values
