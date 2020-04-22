@@ -45,7 +45,7 @@ create table recipes(
  (DEFAULT, DEFAULT);
 
 insert into recipes values
- (DEFAULT, DEFAULT);
+ (DEFAULT, );
 
 insert into ingredients values
  ();
