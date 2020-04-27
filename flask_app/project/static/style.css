@@ -1,0 +1,43 @@
+.error {
+  color: red;
+  font-size: .8em;
+}
+
+body {
+    font-family: 'Fredericka the Great', cursive;
+    padding: 60px 0;
+    background: #ffffff;
+}
+
+button:focus {
+    outline: 0;
+}
+
+.navbar .dropdown-menu .form-control {
+    width: 200px;
+    }
+
+    
+.btn-primary {
+    background-color: #ddcecd;
+    border-color:  #28afb0 ;
+    color: #37392e !important;
+}
+
+.btn-primary:hover {
+    background-color: #28afb0;
+    border-color:  #ddcecd ;
+    color: white !important;
+}
+
+.bg-primary {
+    background-color:   #19647e   !important;
+}
+
+.bg-dark {
+    background-color:  #28afb0 !important;
+}
+
+.btn-outline-secondary{
+    background-color: #ddcecd;
+}

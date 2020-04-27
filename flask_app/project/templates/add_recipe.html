@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+{% from "_form_macros.html" import render_field %}
+ 
+{% block content %}
+ 
+ 
+<div class="add-recipe">
+ 
+<div class="page-header">
+ 
+<h2>Lägg till ett nytt recept</h2>
+ 
+  </div>
+ 
+ 
+ 
+<form action="{{ url_for('recipes.add_recipe') }}" method="POST">
+    {{ form.csrf_token }}
+ 
+    <dl>
+      {{ render_field(form.recipe_title, placeholder="Titel på recept") }}
+      {{ render_field(form.recipe_description, placeholder="Beskrivning av recept") }}
+    </dl>
+ 
+    <button class="btn btn-sm btn-success" type="submit">Lägg till recept</button>
+  </form>
+ 
+</div>
+ 
+ 
+{% endblock %}
