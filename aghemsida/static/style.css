@@ -71,18 +71,27 @@ button:focus {
 
 /*Media CSS */
 
-.bilder {
-    max-width: 1000px;
-    margin: auto;
-    padding-top: 70px;
-    padding-bottom: 10px;
+#top {
+    padding-top: 100px;
 }
 
-.bilder img{
+#bilder {
+    max-width: 1000px;
+    margin: auto;
+    padding-bottom: 20px;
+}
+
+#bilder h3 {
+    padding-top: 40px;
+}
+
+.bild{
     display: flex;
-    flex-direction: row;
     flex-wrap: wrap;
-    padding-bottom: 5px;
+}
+
+.bild img {
+    margin: 5px;
 }
 
 iframe {
