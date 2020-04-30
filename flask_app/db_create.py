@@ -21,12 +21,14 @@ admin_user = User(email='lol@holm.se', password_plaintext='2safe4me', role='admi
 db.session.add(admin_user) 
 
 # insert recipe data
-recipe1 = Recipe('Hembakat surdegsbröd', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris arcu ex, lacinia ac venenatis a, dictum a mi. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis.', admin_user.id, True)
-recipe2 = Recipe('Håll-käften-burgare', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris arcu ex, lacinia ac venenatis a, dictum a mi. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis.', admin_user.id, True)
-recipe3 = Recipe('Pasta Carbonara', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris arcu ex, lacinia ac venenatis a, dictum a mi. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis.', admin_user.id, True)
+recipe1 = Recipe('Hembakat surdegsbröd', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris arcu ex, lacinia ac venenatis a, dictum a mi. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis.', user1.id, True)
+recipe2 = Recipe('Håll-käften-burgare', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris arcu ex, lacinia ac venenatis a, dictum a mi. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis.', user1.id, True)
+recipe3 = Recipe('Pasta Carbonara', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris arcu ex, lacinia ac venenatis a, dictum a mi. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis.', user1.id, True)
+recipe4 = Recipe(title='test', description = 'matbror', image_filename ='bread.jpeg', image_url="http://localhost:5000/static/img/burgare_1.jpeg", user_id='1', is_public=True)
 db.session.add(recipe1)
 db.session.add(recipe2)
 db.session.add(recipe3)
+db.session.add(recipe4)
 
 
   

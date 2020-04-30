@@ -31,7 +31,7 @@ def add_recipe():
     # Cannot pass in 'request.form' to AddRecipeForm constructor, as this will cause 'request.files' to not be
     # sent to the form.  This will cause AddRecipeForm to not see the file data.
     # Flask-WTF handles passing form data to the form, so not parameters need to be included.
-    form = AddRecipeForm(request.form)
+    form = AddRecipeForm()
     if request.method == 'POST':
         if form.validate_on_submit():
             filename = images.save(request.files['recipe_image'])
