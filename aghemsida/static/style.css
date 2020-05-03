@@ -71,17 +71,15 @@ button:focus {
 
 /*Media CSS */
 
-#top {
-    padding-top: 100px;
-}
 
-#bilder {
+.main {
+    padding-top: 100px;
     max-width: 1000px;
     margin: auto;
     padding-bottom: 20px;
 }
 
-#bilder h3 {
+.main h3 {
     padding-top: 40px;
 }
 
@@ -96,8 +94,4 @@ button:focus {
 
 iframe {
     display: block;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 80px;
-    margin-bottom: 80px;
 }
