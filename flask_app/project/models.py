@@ -6,6 +6,7 @@ from sqlalchemy.ext.hybrid import hybrid_method, hybrid_property
 from datetime import datetime
 from sqlalchemy import create_engine
 
+#databas with sqlalchemy
 engine = create_engine('postgresql://ah8140:pzvieemm@pgserver.mah.se/akademigastrologi')
  
 class Recipe(db.Model):
