@@ -4,8 +4,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Kennedy Family Recipe App">
-    <meta name="author" content="Patrick Kennedy">
+    <meta name="description" content="Akademi Gastrologi">
+    <meta name="author" content="Project AG">
     <title>Akademi Gastrologi</title>
     <!-- styles -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
@@ -48,7 +48,7 @@
           </ul>
           <ul class="nav navbar-nav navbar-right">
             {% if current_user.is_authenticated %}
-              <li><a href="{{ url_for('users.user_profile') }}">{{current_user.email}}</a></li>
+              <li><a href="{{ url_for('users.user_profile') }}">{{current_user.username}}</a></li>
             {% else %}
               <li><a href="#">Welcome!</a></li>
             {% endif %}

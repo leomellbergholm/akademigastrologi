@@ -9,6 +9,7 @@
 <form action="{{ url_for('users.register') }}" method="post">
     {{ form.csrf_token }}
     <dl>
+      {{ render_field(form.username, placeholder="Användarnamn") }}
       {{ render_field(form.email, placeholder="Email") }}
       {{ render_field(form.password, placeholder="Lösenord") }}
       {{ render_field(form.confirm, placeholder="Konfirmera lösenord") }}

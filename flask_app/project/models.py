@@ -1,10 +1,10 @@
-from project import db
+from project import db, bcrypt
 from sqlalchemy.ext.hybrid import hybrid_method, hybrid_property
 from datetime import datetime
 
  
 class Recipe(db.Model):
- 
+
     __tablename__ = "recipes"
  
     id = db.Column(db.Integer, primary_key=True)
@@ -32,8 +32,9 @@ class User(db.Model):
     __tablename__ = 'users'
  
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    username = db.Column(db.String, unique=True, nullable=False)
     email = db.Column(db.String, unique=True, nullable=False)
-    password_plaintext = db.Column(db.String, nullable=False)  # TEMPORARY - TO BE DELETED IN FAVOR OF HASHED PASSWORD
+    password = db.Column(db.String, nullable=False)
     authenticated = db.Column(db.Boolean, default=False)
     # email_confirmation_sent_on = db.Column(db.DateTime, nullable=True)
     # email_confirmed = db.Column(db.Boolean, nullable=True, default=False)
@@ -45,9 +46,10 @@ class User(db.Model):
     recipes = db.relationship('Recipe', backref='user', lazy='dynamic')
 
 
-    def __init__(self, email, password_plaintext, role='user'):
+    def __init__(self, username, email, password_plaintext, role='user'):
+        self.username = username
         self.email = email
-        self.password_plaintext = password_plaintext
+        self.password = bcrypt.generate_password_hash(password_plaintext).decode('UTF-8')
         self.authenticated = False
         # self.email_confirmation_sent_on = email_confirmation_sent_on
         # self.email_confirmed = False
@@ -58,8 +60,8 @@ class User(db.Model):
         self.role = role
 
     @hybrid_method
-    def is_correct_password(self, plaintext_password):
-        return self.password_plaintext == plaintext_password
+    def is_correct_password(self, password):
+        return bcrypt.check_password_hash(self.password, password)
  
     @property
     def is_authenticated(self):

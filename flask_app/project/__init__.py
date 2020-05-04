@@ -7,6 +7,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 #from flask_mail import Mail
 from flask_uploads import UploadSet, IMAGES, configure_uploads
+from flask_bcrypt import Bcrypt
 
 ################
 #### config ####
@@ -14,6 +15,7 @@ from flask_uploads import UploadSet, IMAGES, configure_uploads
  
 app = Flask(__name__, instance_relative_config=True)
 app.config.from_pyfile('flask.cfg')
+bcrypt = Bcrypt(app)
  
 db = SQLAlchemy(app)
 #mail = Mail(app)

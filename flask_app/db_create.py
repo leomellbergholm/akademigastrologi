@@ -1,4 +1,4 @@
-from project import db
+from project import db, bcrypt
 from project.models import Recipe, User
  
  
@@ -9,22 +9,22 @@ db.drop_all()
 db.create_all()
 
 # insert user data
-user1 = User('axl@holm.se', '2safe4me')
-user2 = User('ta@mim.se', '2safe4me')
-user3 = User('an@ton.se', '2safe4me')
+user1 = User('Axel', 'axl@holm.se', '2safe4me')
+user2 = User('Tamim', 'ta@mim.se', '2safe4me')
+user3 = User('Anton', 'an@ton.se', '2safe4me')
 db.session.add(user1)
 db.session.add(user2)
 db.session.add(user3)
 
 #admin
-admin_user = User(email='lol@holm.se', password_plaintext='2safe4me', role='admin')
-db.session.add(admin_user) 
+admin_user = User(username = 'Admin', email='lol@holm.se', password_plaintext='2safe4me', role='admin')
+db.session.add(admin_user)
 
 # insert recipe data
 recipe1 = Recipe('Hembakat surdegsbröd', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris arcu ex, lacinia ac venenatis a, dictum a mi. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis.', user1.id, True)
 recipe2 = Recipe('Håll-käften-burgare', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris arcu ex, lacinia ac venenatis a, dictum a mi. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis.', user1.id, True)
 recipe3 = Recipe('Pasta Carbonara', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris arcu ex, lacinia ac venenatis a, dictum a mi. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis.', user1.id, True)
-recipe4 = Recipe(title='test', description = 'matbror', image_filename ='bread.jpeg', image_url="http://localhost:5000/static/img/burgare_1.jpeg", user_id='1', is_public=True)
+recipe4 = Recipe(title='test', description = 'matbror', image_filename ='bread.jpeg', image_url="http://localhost:5000/static/img/burgare_1.jpeg", user_id='1', is_public=True) #Test Ingredients
 db.session.add(recipe1)
 db.session.add(recipe2)
 db.session.add(recipe3)
