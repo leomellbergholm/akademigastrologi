@@ -4,7 +4,9 @@
 from project import db, bcrypt
 from sqlalchemy.ext.hybrid import hybrid_method, hybrid_property
 from datetime import datetime
+from sqlalchemy import create_engine
 
+engine = create_engine('postgresql://ah8140:pzvieemm@pgserver.mah.se/akademigastrologi')
  
 class Recipe(db.Model):
 

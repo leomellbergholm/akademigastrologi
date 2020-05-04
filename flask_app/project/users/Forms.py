@@ -5,7 +5,8 @@ from flask_wtf import Form
 from wtforms import StringField, PasswordField
 from wtforms.validators import DataRequired, Length, EqualTo, Email
  
- 
+#Classes for user related forms 
+
 class RegisterForm(Form):
     username = StringField('Användarname', validators=[DataRequired(), Length(min=2, max=20)])
     email = StringField('Email', validators=[DataRequired(), Email(), Length(min=6, max=40)])
