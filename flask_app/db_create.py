@@ -24,15 +24,18 @@ admin_user = User(username = 'Admin', email='lol@holm.se', password_plaintext='2
 db.session.add(admin_user)
 
 # insert recipe data
-recipe1 = Recipe('Hembakat surdegsbröd', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris arcu ex, lacinia ac venenatis a, dictum a mi. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis.', user1.id, True)
-recipe2 = Recipe('Håll-käften-burgare', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris arcu ex, lacinia ac venenatis a, dictum a mi. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis.', user1.id, True)
-recipe3 = Recipe('Pasta Carbonara', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris arcu ex, lacinia ac venenatis a, dictum a mi. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis.', user1.id, True)
-recipe4 = Recipe(title='test', description = 'matbror', image_filename ='bread.jpeg', image_url="http://localhost:5000/static/img/burgare_1.jpeg", user_id='1', is_public=True)
+recipe1 = Recipe(title='Hembakat surdegsbröd', description = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris arcu ex, lacinia ac venenatis a, dictum a mi. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis.', image_filename ='bread.jpeg', image_url="http://localhost:5000/static/img/burgare_1.jpeg", user_id='1', is_public=True)
+recipe2 = Recipe(title='Håll-käften-burgare', description = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris arcu ex, lacinia ac venenatis a, dictum a mi. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis.', image_filename ='burgare.jpeg', image_url="http://localhost:5000/static/img/burgare_1.jpeg", user_id='1', is_public=True)
+recipe3 = Recipe(title='Pannkakor', description = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris arcu ex, lacinia ac venenatis a, dictum a mi. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis.', image_filename ='pannkakor.jpeg', image_url="http://localhost:5000/static/img/burgare_1.jpeg", user_id='1', is_public=True)
+recipe4 = Recipe(title='Churros', description = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris arcu ex, lacinia ac venenatis a, dictum a mi. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis.', image_filename ='churros.jpeg', image_url="http://localhost:5000/static/img/burgare_1.jpeg", user_id='1', is_public=True)
+recipe5 = Recipe(title='Bakad lax', description = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris arcu ex, lacinia ac venenatis a, dictum a mi. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis.', image_filename ='lax.jpeg', image_url="http://localhost:5000/static/img/burgare_1.jpeg", user_id='1', is_public=True)
+recipe6 = Recipe(title='Penne Arrabiata', description = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris arcu ex, lacinia ac venenatis a, dictum a mi. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis.', image_filename ='pennearrabiata.jpeg', image_url="http://localhost:5000/static/img/burgare_1.jpeg", user_id='1', is_public=True)
 db.session.add(recipe1)
 db.session.add(recipe2)
 db.session.add(recipe3)
 db.session.add(recipe4)
-
+db.session.add(recipe5)
+db.session.add(recipe6)
 
   
 # commit the changes
