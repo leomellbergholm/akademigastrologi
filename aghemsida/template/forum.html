@@ -55,6 +55,13 @@
             </div>
         </div>
     </nav>
+
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Forum</li>
+        </ol>
+    </nav>
     <main>
         <div class="container">
             <div class="row">
@@ -119,10 +126,20 @@
     
                 <!-- Modal body -->
                 <div class="modal-body">
-                    <form action="#" method="get">
-                        <label for="question_title">Question title</label>
-                        <input type="text" id="question_title">
+                    <form method="get">
+                        <div class="container">
+                            <div class="row">
+                                <label for="question_title">Question title:</label>
+                                <input type="text" id="question_title">
+                            </div>
+                            <div class="row">
+                                <label for="main_question">Question:</label>
+                                <textarea name="main_question" id="main_question" cols="30" rows="10"></textarea>
+                            </div>
+                        </div>
                         
+                        
+                        <input type="submit" value="Ask">
                     </form>
                 </div>
     
