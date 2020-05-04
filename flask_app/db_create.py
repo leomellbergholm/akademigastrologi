@@ -1,3 +1,6 @@
+#Authors: Leo M. Holm & Axel Holm
+#Coding: utf-8
+
 from project import db, bcrypt
 from project.models import Recipe, User
  

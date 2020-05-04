@@ -1,3 +1,6 @@
+#Authors: Leo M. Holm & Axel Holm
+#Coding: utf-8
+
 from flask import Flask, render_template, Blueprint, request, flash, redirect, url_for, abort
 from project import db #, mail
 from .Forms import RegisterForm, LoginForm

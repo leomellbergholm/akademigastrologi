@@ -1,3 +1,6 @@
+#Authors: Leo M. Holm & Axel Holm
+#Coding: utf-8
+
 #################
 #### imports ####
 #################
