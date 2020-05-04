@@ -1,6 +1,9 @@
 #Authors: Leo M. Holm & Axel Holm
 #Coding: utf-8
 
+#################
+#### imports ####
+#################
 from flask import Flask, render_template, Blueprint, request, flash, redirect, url_for, abort
 from project import db #, mail
 from .Forms import RegisterForm, LoginForm
@@ -10,8 +13,15 @@ from flask_login import LoginManager, login_required, login_user, current_user, 
 from datetime import datetime
 #from flask_mail import Mail, Message
 
+################
+#### config ####
+################
 
 users_blueprint = Blueprint('users', __name__)
+
+################
+#### routes ####
+################
 
 @users_blueprint.route('/register', methods=['GET', 'POST'])
 def register():

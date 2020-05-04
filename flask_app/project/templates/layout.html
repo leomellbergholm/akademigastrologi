@@ -1,3 +1,5 @@
+<!--ALL FOLLOWING IS THE LAYOUT FOR EVERY PAGE IN USE including navbars, footer and flash messages for success and errors-->
+<!--Authors:Leo.M.H&Axel.H | Coding: utf-8-->
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -5,8 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Akademi Gastrologi">
-    <meta name="author" content="Project AG">
+    <meta name="author" content="Leo.M.H., Axel.H, Anton.H & Tamim.N">
     <title>Akademi Gastrologi</title>
+
     <!-- styles -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <link rel="stylesheet" href="/static/style.css">
@@ -60,7 +63,7 @@
     <div class="container">
       <div class="content">
  
-<!-- flash messages -->
+<!-- flash messages for success, errors and info -->
 {% for error_message in get_flashed_messages(category_filter=["error"]) %}
  
 <div class="alert alert-danger alert-dismissible">{{ error_message }}</div>
