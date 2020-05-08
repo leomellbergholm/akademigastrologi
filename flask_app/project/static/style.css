@@ -41,21 +41,20 @@ button:focus {
 	background-color: #ddcecd;
 }
 
-.logincontainer {
-	border-style: solid;
-	border-width: 0.5px;
-	border-radius: 25px;
-	margin: 5px;
-	text-align: center;
-}
+
 .glyphicon glyphicon-log-in {
 	margin-right: 2px;
 }
 
-.footerbottom {
+.footer {
 	text-align: center;
-	padding-bottom: 5px;
-	font-size: 16px;
+	position: fixed;
+	left: 0em;
+	bottom: 0em;
+	width: 100%;
+	background-color: #333;
+	color: white;
+	padding: 5px;
 }
 
 .db-social .jumbotron {
@@ -225,7 +224,7 @@ button:focus {
 	margin-top: 50px;
 }
 
-.page-header {
+.header {
 	text-align: center;
 }
 
@@ -249,10 +248,63 @@ button:focus {
 .user-registration {
 	border-style: solid;
 	border-radius: 25px;
+	border-width: 1px;
 	padding: 30px;
 	text-align: center;
 	display: inline-block;
 	-webkit-box-shadow: 24px 25px 33px -3px rgba(0,0,0,0.42);
 	-moz-box-shadow: 24px 25px 33px -3px rgba(0,0,0,0.42);
 	box-shadow: 24px 25px 33px -3px rgba(0,0,0,0.42);
+	margin-top: 40px;
+	margin-left: 33%;
+
+}
+
+#test1 { 
+	border-color:#cccccc; 
+	padding:7px; 
+	font-size:24px; 
+	border-width:2px; 
+	border-radius:23px; 
+	border-style:hidden; 
+	box-shadow: 7px 4px 13px 0px rgba(42,42,42,.61);
+	text-align: center;  
+} 
+.css-input:focus { 
+	outline:none; 
+} 
+
+.container-flash {
+	text-align: center;
+	width: 40%;
+	margin-left: 30%;
+}
+
+.recipe_image {
+	width: 48%;
+	display: inline-block;
+	text-align: center;
+	box-sizing: border-box;
+	-webkit-box-shadow: 2px 4px 10px 5px rgba(0,0,0,0.63);
+	-moz-box-shadow: 2px 4px 10px 5px rgba(0,0,0,0.63);
+	box-shadow: 2px 4px 10px 5px rgba(0,0,0,0.63);
+	
+}
+.recipe_info {
+	width: 48%;
+	text-align: center;
+	display: inline-block;
+	box-sizing: border-box;
+}
+.recipe_descript_title {
+	font-size: calc(1.3em + 1.3vw)
+	
+}
+
+.recipe_descipt_descript {
+	padding: 20px;
+}
+
+.page_header {
+	white-space: nowrap;
 }

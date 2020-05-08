@@ -4,8 +4,8 @@
 {% block content %}
 <!--This shows within the layout.html template-->
 <div class="user-profile">
-  <div class="page-header">
-    <h2>User Profile</h2>
+  <div class="header">
+    <h2>Användarprofil</h2>
   </div>
 </div>
 
@@ -44,14 +44,14 @@
                           </div>
                           <div class="profile_recipes">
                             <div class="page-header">
-                              <h2>User Recipes</h2>
+                              <h2>Dina Recept</h2>
                             </div>
                           
                             <table class="table table-striped" id="owned_stock_table">
                               <thead>
                                 <tr>
-                                  <th>Title</th>
-                                  <th>Description</th>
+                                  <th>Titel</th>
+                                  <th>Beskrivning</th>
                                 </tr>
                               </thead>
                               <tbody>
@@ -65,11 +65,11 @@
                             </table>
                           </div>
                           <div class="user panel-info">
-                            <div class="panel-heading">Account Actions</div>
-                            <div class="panel-body"><a href="#">Change Email</a></div>
-                            <div class="panel-body"><a href="#">Change Password</a></div>
+                            <div class="panel-heading">Inställningar</div>
+                            <div class="panel-body"><a href="#">Ändra Email</a></div>
+                            <div class="panel-body"><a href="#">Ändra Lösenord</a></div>
                             {% if not current_user.email_confirmed %}
-                              <div class="panel-body"><a href="#">Resend Email Confirmation</a></div>
+                              <div class="panel-body"><a href="#">Skicka Bekräftelsemail</a></div>
                             {% endif %}
                           </div>    
                       

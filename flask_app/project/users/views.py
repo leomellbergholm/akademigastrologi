@@ -31,6 +31,8 @@ def register():
             try:
                 new_user = User(form.username.data, form.email.data, form.password.data)
                 new_user.authenticated = True
+                new_user.last_logged_in = new_user.current_logged_in
+                new_user.current_logged_in = datetime.now()
                 db.session.add(new_user)
                 db.session.commit()
                 login_user(new_user)
