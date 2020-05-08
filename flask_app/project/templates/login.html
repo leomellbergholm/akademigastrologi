@@ -3,19 +3,22 @@
  
 {% block content %}
 <!--This shows within the layout.html template--> 
+
 <div class="user-registration">
-  <div class="page-header">
-    <h2>Log In</h2>
-  </div>
-    <form action="{{ url_for('users.login') }}" method="post">
+  <form action="{{ url_for('users.login') }}" method="post" class="loginstyle">
     {{ form.csrf_token }}
     <dl>
-      {{ render_field(form.email, placeholder="Email") }}
-      {{ render_field(form.password, placeholder="Lösenord") }}
+      <div>
+      {{ render_field(form.email, placeholder="Email", id="formtest") }}
+      {{ render_field(form.password, placeholder="Lösenord", id="formtest") }}
+      </div>
     </dl>
     <button class="btn btn-sm btn-success" type="submit">Logga in</button>
   </form>
+  <br>
   <em>Nytt konto? </em><a href="/register">Registrera dig!!</a>
 </div>
- 
+
+
+
 {% endblock %}

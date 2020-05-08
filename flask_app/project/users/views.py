@@ -7,7 +7,7 @@
 from flask import Flask, render_template, Blueprint, request, flash, redirect, url_for, abort
 from project import db #, mail
 from .Forms import RegisterForm, LoginForm
-from project.models import User
+from project.models import User, Recipe
 from sqlalchemy.exc import IntegrityError
 from flask_login import LoginManager, login_required, login_user, current_user, logout_user
 from datetime import datetime
@@ -78,7 +78,8 @@ def logout():
 @users_blueprint.route('/user_profile')
 @login_required
 def user_profile():
-    return render_template('user_profile.html')
+    all_user_recipes = Recipe.query.filter_by(user_id=current_user.id)
+    return render_template('user_profile.html', user_recipes=all_user_recipes)
 
 @users_blueprint.route('/admin_view_users')
 @login_required
