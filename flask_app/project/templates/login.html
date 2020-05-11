@@ -2,26 +2,20 @@
 {% from "_form_macros.html" import render_field %}
  
 {% block content %}
-<!--This shows within the layout.html template-->
-<div class="container">
-<div class="header">
-  <h1>Logga in</h1>
-</div>
+<!--This shows within the layout.html template--> 
 <div class="user-registration">
-  <form action="{{ url_for('users.login') }}" method="post" class="loginstyle">
+  <div class="page-header">
+    <h2>Log In</h2>
+  </div>
+    <form action="{{ url_for('users.login') }}" method="post">
     {{ form.csrf_token }}
     <dl>
-      <div>
-      {{ render_field(form.email, id="test1", placeholder="Email") }}
-      <br>
-      {{ render_field(form.password, id="test1", placeholder="Lösenord") }}
-      </div>
+      {{ render_field(form.email, placeholder="Email") }}
+      {{ render_field(form.password, placeholder="Lösenord") }}
     </dl>
-    <button class="btn btn-sm btn-success" type="submit" id="loggainknapp">Logga in</button>
+    <button class="btn btn-sm btn-success" type="submit">Logga in</button>
   </form>
-  <br>
   <em>Nytt konto? </em><a href="/register">Registrera dig!!</a>
 </div>
-</div>
-
+ 
 {% endblock %}

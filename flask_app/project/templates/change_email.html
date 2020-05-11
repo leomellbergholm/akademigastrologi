@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{% from "_form_macros.html" import render_field %}
+ 
+{% block content %}
+ 
+<!--This shows within the layout.html template-->
+<div class="user-registration">
+  <div class="page-header">
+    <h2>Bytt email</h2>
+  </div>
+<form action="#" method="post">
+    {{ form.csrf_token }}
+    <dl>
+      {{ render_field(form.password, placeholder="Lösenord") }}
+      {{ render_field(form.email, placeholder="Ny_Email") }}
+    </dl>
+    <a href="/" class="btn btn-sm btn-success">Byt emial</a>
+  </form>
+</div>
+  
+{% endblock %}

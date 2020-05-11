@@ -7,7 +7,7 @@
 from flask import Flask, render_template, Blueprint, request, flash, redirect, url_for, abort
 from project import db #, mail
 from .Forms import RegisterForm, LoginForm
-from project.models import User, Recipe
+from project.models import User
 from sqlalchemy.exc import IntegrityError
 from flask_login import LoginManager, login_required, login_user, current_user, logout_user
 from datetime import datetime
@@ -31,8 +31,6 @@ def register():
             try:
                 new_user = User(form.username.data, form.email.data, form.password.data)
                 new_user.authenticated = True
-                new_user.last_logged_in = new_user.current_logged_in
-                new_user.current_logged_in = datetime.now()
                 db.session.add(new_user)
                 db.session.commit()
                 login_user(new_user)
@@ -80,8 +78,7 @@ def logout():
 @users_blueprint.route('/user_profile')
 @login_required
 def user_profile():
-    all_user_recipes = Recipe.query.filter_by(user_id=current_user.id)
-    return render_template('user_profile.html', user_recipes=all_user_recipes)
+    return render_template('user_profile.html')
 
 @users_blueprint.route('/admin_view_users')
 @login_required
@@ -93,5 +90,12 @@ def admin_view_users():
         return render_template('admin_view_users.html', users=users)
     return redirect(url_for('stocks.watch_list'))
 
+@users_blueprint.route('/change_email')
+def c_email():
+    form = RegisterForm(request.form)
+    return render_template('change_email.html', form=form)
 
-
+@users_blueprint.route('/change_password')
+def c_password():
+    form = RegisterForm(request.form)
+    return render_template('change_password.html', form=form)
