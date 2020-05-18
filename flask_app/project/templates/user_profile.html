@@ -1,0 +1,94 @@
+{% extends "layout.html" %}
+{% from "_form_macros.html" import render_field %}
+ 
+{% block content %}
+<!--This shows within the layout.html template-->
+<div class="user-profile">
+  <div class="header">
+    <h2>Användarprofil</h2>
+  </div>
+</div>
+
+
+<div class="container db-social">
+  <div class="jumbotron jumbotron-fluid"></div>
+  <div class="container-fluid-user">
+      <div class="row justify-content-center">
+          <div class="col-xl-11">
+              <div class="widget head-profile has-shadow">
+                  <div class="widget-body pb-0">
+                      <div class="row d-flex align-items-center">
+                        <div class="infos">
+                          <h2>{{current_user.username}}</h2>
+                          <div class="heading">Användarnamn</div>
+                        </div>
+                          <div class="justify-content-center" id="user_statistik">
+                              <ul>
+                                  <li>
+                                      <div class="counter">{{ current_user.registered_on.strftime("%A %B %d, %Y") }}</div>
+                                      <div class="heading">Medlem Sedan:</div>
+                                  </li>
+                                  <li>
+                                      <div class="counter">{{ current_user.last_logged_in.strftime("%A %B %d, %Y") }}</div>
+                                      <div class="heading">Senaste Inloggning:</div>
+                                  </li>
+                                  <li>
+                                      {% if current_user.email_confirmed %}
+                                        <div class="counter">{{ current_user.email_confirmed_on.strftime("%A %B %d, %Y") }}</div>
+                                      {% else %}
+                                        <div class="counter">Inte Bekräftad</div>
+                                      {% endif %}
+                                      <div class="heading">Email Bekräftad?</div>
+                                  </li>
+                              </ul>
+                          </div>
+                          <div class="profile_recipes">
+                            <div class="page-header">
+                              <h2>Dina Recept</h2>
+                            </div>
+                          
+                            <table class="table table-striped" id="owned_stock_table">
+                              <thead>
+                                <tr>
+                                  <th>Titel</th>
+                                  <th>Beskrivning</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                {% for recipe in user_recipes %}
+                                <tr>
+                                  <td><a href="{{ url_for('recipes.recipe_details', recipe_id=recipe.id) }}">{{ recipe.recipe_title }}</a></td>
+                                  <td>{{ recipe.recipe_description }}</td>
+                                </tr>
+                                {% endfor %}
+                              </tbody>
+                            </table>
+                          </div>
+                          <div class="user panel-info">
+                            <div class="panel-heading">Inställningar</div>
+                            <div class="panel-body"><a href="#">Ändra Email</a></div>
+                            <div class="panel-body"><a href="#">Ändra Lösenord</a></div>
+                            {% if not current_user.email_confirmed %}
+                              <div class="panel-body"><a href="#">Skicka Bekräftelsemail</a></div>
+                            {% endif %}
+                          </div>    
+                      
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      
+  </div>
+  
+</div>
+
+
+
+</div> 
+{% endblock %}

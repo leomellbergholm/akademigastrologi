@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+{% from "_form_macros.html" import render_field %}
+ 
+{% block content %}
+<!--This shows within the layout.html template-->
+<div class="container">
+<div class="header">
+  <h2>Registrera nytt konto!</h2>
+</div>
+<div class="user-registration">
+<form action="{{ url_for('users.register') }}" method="post" class="loginstyle">
+    {{ form.csrf_token }}
+    <dl>
+      {{ render_field(form.username, placeholder="Användarnamn", id="test1") }}
+      <br>
+      {{ render_field(form.email, placeholder="Email", id="test1") }}
+      <br>
+      {{ render_field(form.password, placeholder="Lösenord", id="test1") }}
+      <br>
+      {{ render_field(form.confirm, placeholder="Bekräfta lösenord", id="test1") }}
+    </dl>
+    <button class="btn btn-sm btn-success" type="submit">Skapa nytt konto!</button>
+  </form>
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,94 @@
+{% extends "layout.html" %}
+{% block content %}
+<!-- Navbar -->
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Forum</li>
+        </ol>
+    </nav>
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h2>Welcome to Forum</h2>
+                </div>
+            </div>
+            {% for forum in all_forums %}
+            <div class="row">
+                <div class="col-lg forum">
+                    <h5>
+                        <a href="./discussion.html?id={{forum.id}}">{{forum.forum_title}}</a>
+                    </h5>
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col forum_stats">2 comments</div>
+                            <div class="col forum_stats">started by: Tamim</div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            {% endfor %}
+<!--            <div class="row">-->
+<!--                <div class="col-lg forum">-->
+<!--                    <h5>-->
+<!--                        <a href="./discussion.html">How to make cup cakes without sugar?</a>-->
+<!--                    </h5>-->
+<!--                    <div class="row">-->
+<!--                        <div class="col">2 views</div>-->
+<!--                        <div class="col">0 comments</div>-->
+<!--                        <div class="col">started by: Nasir</div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+
+        </div>
+
+    </main>
+    <!-- Optional JavaScript -->
+    <!-- Button to Open the Modal -->
+    <button type="button" class="new" data-toggle="modal" data-target="#myModal">
+        +
+    </button>
+    
+    <!-- The Modal -->
+    <div class="modal" id="myModal">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+    
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Ask a new question</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+    
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <form method="get">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <label for="question_title">Question title:</label>
+                                <input type="text" id="question_title">
+                            </div>
+                            <div class="row">
+                                <label for="main_question">Question:</label>
+                                <textarea name="main_question" id="main_question" cols="30" rows="10"></textarea>
+                            </div>
+                        </div>
+                        
+                        
+                        <input type="submit" value="Ask">
+                    </form>
+                </div>
+    
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+    
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
