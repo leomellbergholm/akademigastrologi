@@ -5,19 +5,19 @@
 #### imports ####
 #################
  
-from flask import render_template, Blueprint, request, flash, redirect, url_for
-from project.models import Recipe, User
+from flask import render_template, Blueprint, request, flash, redirect, url_for, jsonify
+from project.models import Recipe, User, Ingredient, IngredientSchema
 from .Forms import AddRecipeForm
 from project import db, images
 from flask_login import LoginManager, login_required, login_user, current_user, logout_user
-from flask_uploads import UploadSet, IMAGES, configure_uploads  
+from flask_uploads import UploadSet, IMAGES, configure_uploads
+
 
 ################
 #### config ####
 ################
  
-recipes_blueprint = Blueprint('recipes', __name__)
- 
+recipes_blueprint = Blueprint('recipes', __name__) 
  
 ################
 #### routes ####
@@ -29,7 +29,7 @@ def index():
 
 @recipes_blueprint.route('/public')
 def public_recipes():
-    all_public_recipes = Recipe.query.filter_by(is_public=True)
+    all_public_recipes = Recipe.query.with_entities(Recipe.id, Recipe.recipe_title, Recipe.recipe_description).filter_by(is_public=True)
     return render_template('public_recipes.html', public_recipes=all_public_recipes)
 
 @recipes_blueprint.route('/add', methods=['GET', 'POST'])
@@ -48,9 +48,17 @@ def add_recipe():
         else:
             #flash_errors(form)
             flash('ERROR! Recipe was not added.', 'error')
-            
- 
-    return render_template('add_recipe.html', form=form)
+    else:
+        
+        return render_template('add_recipe.html', form=form)
+
+@recipes_blueprint.route('/ingredientlist', methods=['GET'])
+@login_required
+def get_ingredients():
+    ingredient_list = Ingredient.query.all()
+    ingredient_schema = IngredientSchema(many=True)
+    output = ingredient_schema.dump(ingredient_list)
+    return jsonify({'ingredients' : output})
 
 @recipes_blueprint.route('/recipes')
 @login_required

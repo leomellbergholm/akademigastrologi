@@ -1,14 +1,50 @@
 #Authors: Leo M. Holm & Axel Holm
 #Coding: utf-8
 
-from project import db, bcrypt
+from project import db, bcrypt, ma
 from sqlalchemy.ext.hybrid import hybrid_method, hybrid_property
 from datetime import datetime
 from sqlalchemy import create_engine
 
 #databas with sqlalchemy
 engine = create_engine('postgresql://ah8140:pzvieemm@pgserver.mah.se/akademigastrologi')
- 
+
+
+class Ingredient(db.Model):
+
+    __tablename__ = "ingredient"
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String, nullable=False)
+    measurement_unit = db.Column(db.String, nullable=False)
+
+    def __init__(self, name, measurement_unit):
+        self.name = name
+        self.measurement_unit = measurement_unit
+   
+    def __repr__(self):
+        return '<id: {}, name: {}, measurement_unit: {}>'.format(self.id, self.name, self.measurement_unit)
+
+class IngredientSchema(ma.SQLAlchemyAutoSchema):
+    class Meta:
+        model = Ingredient
+        include_fk= True
+
+class RecipeHasIngredient(db.Model):
+
+    __tablename__ = "recipe_has_ingredient"
+    recipe_id = db.Column(db.Integer, db.ForeignKey('recipes.id'), primary_key=True)
+    ingredient_id = db.Column(db.Integer, db.ForeignKey('ingredient.id'), primary_key=True)
+    quantity = db.Column(db.Integer, nullable=False)
+
+    def __init__(self, recipe_id, ingredient_id, quantity):
+        self.recipe_id = recipe_id
+        self.ingredient_id = ingredient_id
+        self.quantity = quantity
+   
+    def __repr__(self):
+        return '<recipe_id: {}, ingredient_id: {}, quantity: {}>'.format(self.recipe_id, self.ingredient_id, self.quantity)
+
+    
 class Recipe(db.Model):
 
     __tablename__ = "recipes"

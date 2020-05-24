@@ -2,24 +2,73 @@
 {% from "_form_macros.html" import render_field %}
  
 {% block content %}
- 
+
+
+
 <!--This shows within the layout.html template-->
 <div class="container">
 <div class="add-recipe">
   <div class="page-header">
     <h2>Lägg till ett nytt recept</h2>
   </div>
-  <form action="{{ url_for('recipes.add_recipe') }}" method="post" enctype="multipart/form-data">
+  <form action="{{ url_for('recipes.add_recipe', ingredients=ingredients) }}" method="post" enctype="multipart/form-data">
     {{ form.csrf_token }}
     <dl>
       {{ render_field(form.recipe_title, placeholder="Titel på recept") }}
       {{ render_field(form.recipe_description, placeholder="Beskrivning av recept") }}
+      <br>
+      <p><strong>Ingredienser:</strong></p>
+      <select id="ingredients_select" name="ingredient_select"></select>
+      <input type="text" id="ingredient_amount"/>
+      <span id="measurement_unit_label"></span>
+      <br></br>
+      
       {{ render_field(form.recipe_image) }}
+      <br>
       {{ render_field(form.is_public) }}
     </dl>
     <button class="btn btn-sm btn-success" type="submit">Lägg till recept</button>
   </form> 
 </div>
 </div>
+
+<script>
   
+  $(document).ready(function() {
+    $.getJSON($SCRIPT_ROOT + "/ingredientlist", null, function(data) {
+      const ingredients = data.ingredients
+
+      /* Populate select */
+      $.each(ingredients, function(index, item){
+        $("#ingredients_select").append(
+          $("<option></option>")
+            .text(item.name)
+            .val(item.id)  
+        )
+      });
+
+      /* Ingredients select handler */
+      function on_ingredients_select_change(event) {
+        const selected_ingredient_id = event.target.value
+
+        const ingredient = ingredients.find(function(current_ingredient) {
+          return current_ingredient.id == selected_ingredient_id
+        })
+        console.log(ingredient)
+        $("#measurement_unit_label").text(ingredient.measurement_unit)
+        /*
+        let ingredient_select = document.getElementById("ingredients_select")
+        let selectedValue = ingredients_select.options[ingredients_select.selectedIndex].value
+          console.log(selectedValue)  
+        */
+        
+      };
+
+      $("#ingredients_select").change(on_ingredients_select_change)
+      
+
+    }) 
+  });
+</script>
+
 {% endblock %}

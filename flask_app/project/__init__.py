@@ -11,6 +11,7 @@ from flask_login import LoginManager
 #from flask_mail import Mail
 from flask_uploads import UploadSet, IMAGES, configure_uploads
 from flask_bcrypt import Bcrypt
+from flask_marshmallow import Marshmallow
 
 ################
 #### config ####
@@ -21,6 +22,7 @@ app.config.from_pyfile('flask.cfg')
 bcrypt = Bcrypt(app)
  
 db = SQLAlchemy(app)
+ma = Marshmallow(app)
 #mail = Mail(app)
 
 login_manager = LoginManager()
