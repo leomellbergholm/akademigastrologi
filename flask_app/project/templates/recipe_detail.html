@@ -15,7 +15,7 @@
 
  
   <div class="row">
-    <div class="panel panel-primary">
+    <div class="panel panel-primary" id="panelrecipe">
       <div class="panel-heading">Public or Private</div>
       {% if recipe.Recipe.is_public %}
         <div class="panel-body">Public</div>
@@ -24,7 +24,7 @@
       {% endif %}
     </div>
  
-    <div class="panel panel-primary">
+    <div class="panel panel-primary" id="panelrecipe">
       <div class="panel-heading">User</div>
       <div class="panel-body">{{ recipe.User.username }}</div>
     </div>
