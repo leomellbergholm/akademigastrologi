@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% from "_form_macros.html" import render_field %}
+ 
+{% block content %}
+ 
+<!--This shows within the layout.html template-->
+<div class="video">
+  <iframe width="900" height="500" src="https://www.youtube.com/embed/{{video_id}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+<div class="video">
+  <a class="btn btn-sm btn-success" href="/video">&lt;-Tillbaka</a>
+</div>
+  
+{% endblock %}

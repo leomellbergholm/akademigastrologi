@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+{% from "_form_macros.html" import render_field %}
+ 
+{% block content %}
+ 
+<!--This shows within the layout.html template-->
+<div class="video">
+    <h2>Bilder</h2>
+    <div class="image">
+      {% for image in images %}
+        <img src="{{ image[0] }}" alt="{{ image[1] }}" width="300" height="300">
+      {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
