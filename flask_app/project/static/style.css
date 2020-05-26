@@ -4,9 +4,11 @@
 }
 
 body {
-	font-family: 'Fredericka the Great', cursive;
+	font-family: 'Raleway', sans-serif;
 	padding-top: 100px;
 	background: #ffffff;
+	font-weight: 500;
+	font-size: 18px;
 }
 
 button:focus {
@@ -18,27 +20,27 @@ button:focus {
 }
 
 .btn-primary {
-	background-color: #ddcecd;
-	border-color: #28afb0;
-	color: #37392e !important;
+	background-color: #777777;
+	border-color: #333333;
+	color: white !important;
 }
 
 .btn-primary:hover {
-	background-color: #28afb0;
-	border-color: #ddcecd;
+	background-color: #333333;
+	border-color: #777777;
 	color: white !important;
 }
 
 .bg-primary {
-	background-color: #19647e !important;
+	background-color: #333333 !important;
 }
 
 .bg-dark {
-	background-color: #28afb0 !important;
+	background-color: #333333 !important;
 }
 
 .btn-outline-secondary {
-	background-color: #ddcecd;
+	background-color:#999999;
 }
 
 
@@ -58,7 +60,8 @@ button:focus {
 }
 
 .db-social .jumbotron {
-    background: url(https://helenalyth.se/wp-content/uploads/2018/02/cervera_chark_10.jpg);
+	background: url(https://cdn.pixabay.com/photo/2019/08/10/22/34/food-4397860_960_720.jpg);
+	background-size: 75% !important;
 	margin: 0;
 	background-repeat: no-repeat;
 	background-attachment: fixed;
@@ -325,4 +328,20 @@ button:focus {
 
 .btn-margin {
 	margin-bottom: 20px;
+}
+
+#navbarlogo {
+	height: 50%;
+	width: 50%;
+}
+
+#landingh1 {
+	font-weight: bolder;
+	color: white;
+}
+
+.nav > li > a{
+	padding-top: 30px;
+	font-size: 16px;
+	font-weight: bolder;
 }
