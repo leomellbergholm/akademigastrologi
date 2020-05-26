@@ -31,6 +31,12 @@ button:focus {
 	color: white !important;
 }
 
+.panel-primary > .panel-heading{
+	background-color:#777777;
+	border-color: #333333;
+}
+
+
 .bg-primary {
 	background-color: #333333 !important;
 }
@@ -50,7 +56,7 @@ button:focus {
 
 .footer {
 	text-align: center;
-	position: fixed;
+	position: relative;
 	left: 0em;
 	bottom: 0em;
 	width: 100%;
@@ -345,3 +351,4 @@ button:focus {
 	font-size: 16px;
 	font-weight: bolder;
 }
+
