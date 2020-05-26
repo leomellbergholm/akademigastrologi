@@ -308,3 +308,21 @@ button:focus {
 .page_header {
 	white-space: nowrap;
 }
+
+.video {
+	max-width: 1300px;
+	margin: auto;
+}
+
+.image{
+    display: flex;
+	flex-wrap: wrap;
+}
+
+.image img {
+    margin: 5px;
+}
+
+.btn-margin {
+	margin-bottom: 20px;
+}

@@ -16,3 +16,10 @@ class RegisterForm(Form):
 class LoginForm(Form):
     email = StringField('Email', validators=[DataRequired(), Email(), Length(min=6, max=40)])
     password = PasswordField('Lösenord', validators=[DataRequired()])
+
+class change_emailForm(Form):
+    password = PasswordField('Lösenord', validators=[DataRequired()])
+    email = StringField('Email', validators=[DataRequired(), Email(), Length(min=6, max=40)])
+
+class change_usernameForm(Form):
+    username = StringField('Användarnamn', validators=[DataRequired(), Length(min=2, max=20)])
