@@ -50,6 +50,10 @@ button:focus {
 	background-color:#999999;
 }
 
+#bannerimage {
+	height: 200px;
+	width: 1000px;
+}
 
 .glyphicon glyphicon-log-in {
 	margin-right: 2px;
