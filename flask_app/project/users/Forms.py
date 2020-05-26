@@ -23,3 +23,8 @@ class change_emailForm(Form):
 
 class change_usernameForm(Form):
     username = StringField('Användarnamn', validators=[DataRequired(), Length(min=2, max=20)])
+
+class change_passwordForm(Form):
+    password = PasswordField('Lösenord', validators=[DataRequired()])
+    new_password = PasswordField('Lösenord', validators=[DataRequired(), Length(min=6, max=40)])
+    confirm = PasswordField('Bekräfta lösenord', validators=[DataRequired(), EqualTo('new_password')])
