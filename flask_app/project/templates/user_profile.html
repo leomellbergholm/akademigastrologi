@@ -66,8 +66,7 @@
                           </div>
                           <div class="user panel-info">
                             <div class="panel-heading">Inställningar</div>
-                            <div class="panel-body"><a href="{{ url_for('users.change_username') }}">Ändra Användarnamn</a></div>
-                            <div class="panel-body"><a href="{{ url_for('users.change_email') }}">Ändra Email</a></div>
+                            <div class="panel-body"><a href="#">Ändra Email</a></div>
                             <div class="panel-body"><a href="#">Ändra Lösenord</a></div>
                             {% if not current_user.email_confirmed %}
                               <div class="panel-body"><a href="#">Skicka Bekräftelsemail</a></div>
