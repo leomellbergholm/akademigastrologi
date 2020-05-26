@@ -16,6 +16,7 @@ class RegisterForm(Form):
 class LoginForm(Form):
     email = StringField('Email', validators=[DataRequired(), Email(), Length(min=6, max=40)])
     password = PasswordField('Lösenord', validators=[DataRequired()])
+<<<<<<< HEAD
 
 class change_emailForm(Form):
     password = PasswordField('Lösenord', validators=[DataRequired()])
@@ -28,3 +29,5 @@ class change_passwordForm(Form):
     password = PasswordField('Lösenord', validators=[DataRequired()])
     new_password = PasswordField('Lösenord', validators=[DataRequired(), Length(min=6, max=40)])
     confirm = PasswordField('Bekräfta lösenord', validators=[DataRequired(), EqualTo('new_password')])
+=======
+>>>>>>> d68f89c1a585f7cda89652edd78ae0b9afdab445

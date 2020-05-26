@@ -66,36 +66,7 @@ def user_recipes():
     all_user_recipes = Recipe.query.filter_by(user_id=current_user.id)
     return render_template('user_recipes.html', user_recipes=all_user_recipes)
 
-@recipes_blueprint.route('/edit/<recipe_id>', methods=['GET', 'POST'])
-@login_required
-def edit_recipe(recipe_id):
-    form = EditRecipeForm(active=True)
-    recipe_with_user = db.session.query(Recipe, User).join(User).filter(Recipe.id == recipe_id).first()
-    if request.method == 'POST':
-        if form.validate_on_submit():
-            if form.recipe_image.data is not None:
-                filename = images.save(request.files['recipe_image'])
-                url = images.url(filename)
-            
-            else:
-                filename = recipe_with_user.Recipe.image_filename
-                url = recipe_with_user.Recipe.image_url
 
-            uppdate = Recipe.query.filter_by(id=recipe_id).first()
-            uppdate.recipe_title = form.recipe_title.data 
-            uppdate.recipe_description = form.recipe_description.data 
-            uppdate.is_public = form.is_public.data
-            uppdate.image_filename = filename
-            uppdate.image_url = url
-            db.session.commit()
-            flash('Recept, {}, har ändrats!'.format(uppdate.recipe_title), 'success')
-            return redirect(url_for('recipes.user_recipes'))
-
-        else:
-            #flash_errors(form)
-            flash('ERROR! Recipe was not added.', 'error')
-
-    return render_template('edit_recipe.html', form=form, recipe=recipe_with_user, recipe_id=recipe_id)
 
 @recipes_blueprint.route('/recipe/<recipe_id>')
 def recipe_details(recipe_id):
@@ -111,16 +82,3 @@ def recipe_details(recipe_id):
     else:
         flash('Error! Recipe does not exist.', 'error')
     return redirect(url_for('recipes.public_recipes'))
-
-@recipes_blueprint.route('/video')
-def videos():
-    return render_template('video.html')
-
-@recipes_blueprint.route('/video/<video_id>')
-def videoplayer(video_id):
-    return render_template('video_player.html', video_id=video_id)
-
-@recipes_blueprint.route('/media')
-def media():
-    recipe_image = db.session.query(Recipe.image_url, Recipe.image_filename).all()
-    return render_template('media.html', images=recipe_image)
