@@ -46,6 +46,8 @@
           <li><a href="{{ url_for('recipes.user_recipes') }}">Mina recept</a></li>
           <li><a href="{{ url_for('recipes.public_recipes') }}">Alla recept</a></li>
           <li><a href="{{ url_for('recipes.add_recipe') }}">Lägg till recept</a></li>
+          <li><a href="{{ url_for('recipes.video') }}">Matutbildning</a></li>
+          <li><a href="{{ url_for('recipes.media') }}">Galleri</a></li>
 
           {% if current_user.role == "admin" %}
           <li><a href="{{ url_for('users.admin_view_users') }}">View Users (Admin)</a></li>

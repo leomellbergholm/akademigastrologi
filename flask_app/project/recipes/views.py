@@ -82,3 +82,18 @@ def recipe_details(recipe_id):
     else:
         flash('Error! Recipe does not exist.', 'error')
     return redirect(url_for('recipes.public_recipes'))
+
+
+@recipes_blueprint.route('/video')
+def video():
+    return render_template('video.html')
+
+@recipes_blueprint.route('/video/<video_id>')
+def videoplayer(video_id):
+    return render_template('video_player.html', video_id=video_id)
+
+
+@recipes_blueprint.route('/media')
+def media():
+    recipe_image = db.session.query(Recipe.image_url, Recipe.image_filename).all()
+    return render_template('media.html', images=recipe_image)
