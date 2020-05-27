@@ -18,8 +18,9 @@ class AddRecipeForm(Form):
     recipe_image = FileField('Receptbild', validators=[FileRequired(), FileAllowed(images, 'Bara bilder!')])
     is_public = BooleanField('Publikt recept?')
 
+
 class EditRecipeForm(Form):
     recipe_title = StringField('Titel på recept', validators=[DataRequired()])
     recipe_description = StringField('Beskrivning av recept', validators=[DataRequired()])
-    recipe_image = FileField('Receptbild', validators=[FileAllowed(images, 'Bara bilder!')])
+    recipe_image = FileField('Receptbild', [FileAllowed(images, 'Bara bilder!')])
     is_public = BooleanField('Publikt recept?')

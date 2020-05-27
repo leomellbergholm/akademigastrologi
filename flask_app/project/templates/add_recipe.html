@@ -18,9 +18,15 @@
       {{ render_field(form.recipe_description, placeholder="Beskrivning av recept") }}
       <br>
       <p><strong>Ingredienser:</strong></p>
-      <select id="ingredients_select" name="ingredient_select"></select>
-      <input type="text" id="ingredient_amount"/>
-      <span id="measurement_unit_label"></span>
+      <div id="add_new_recipe">
+        <select id="ingredients_select" class="ingredients_select" name="ingredient_select"></select>
+        <input type="text" class="ingredient_amount"/>
+        <span class="unit_label" id="measurement_unit_label"></span>
+        <input type="hidden" name="ingredient[]" class="hidden-ingredient-input">
+      </div>
+
+      <button id="clone_ingredient" >Lägg till en till ingrediens</button>
+      
       <br></br>
       
       {{ render_field(form.recipe_image) }}
@@ -28,13 +34,36 @@
       {{ render_field(form.is_public) }}
     </dl>
     <button class="btn btn-sm btn-success" type="submit">Lägg till recept</button>
-  </form> 
+  </form>
+  
 </div>
 </div>
 
 <script>
   
   $(document).ready(function() {
+
+    $("body").on("change",".ingredients_select, .ingredient_amount", function() {
+      let ingredientId = $(this).parent().children(".ingredients_select").val();
+      let amount = $(this).parent().children(".ingredient_amount").val();
+      let unit = $(this).parent().children(".unit_label").text();
+
+
+      let inputValue = ingredientId + "-" + amount + "-" + unit;
+      console.log(inputValue);
+      $(this).parent().children(".hidden-ingredient-input").val(inputValue);
+    });
+
+    $("#clone_ingredient").on("click", function(){
+      $('#add_new_recipe').clone(true).val('').insertAfter("#add_new_recipe");
+    });
+
+
+    $("#clone_ingredient").on("click", function(event){
+      event.preventDefault();
+    });
+    
+    
     $.getJSON($SCRIPT_ROOT + "/ingredientlist", null, function(data) {
       const ingredients = data.ingredients
 
@@ -47,28 +76,28 @@
         )
       });
 
+
       /* Ingredients select handler */
       function on_ingredients_select_change(event) {
         const selected_ingredient_id = event.target.value
 
-        const ingredient = ingredients.find(function(current_ingredient) {
+        const ingredient = ingredients.find(function(current_ingredient) {  
           return current_ingredient.id == selected_ingredient_id
         })
-        console.log(ingredient)
+
         $("#measurement_unit_label").text(ingredient.measurement_unit)
-        /*
-        let ingredient_select = document.getElementById("ingredients_select")
-        let selectedValue = ingredients_select.options[ingredients_select.selectedIndex].value
-          console.log(selectedValue)  
-        */
+        
         
       };
+      
 
       $("#ingredients_select").change(on_ingredients_select_change)
-      
+
 
     }) 
   });
+
+
 </script>
 
 {% endblock %}

@@ -6,7 +6,7 @@
 #################
 from flask import Flask, render_template, Blueprint, request, flash, redirect, url_for, abort
 from project import db #, mail
-from .Forms import RegisterForm, LoginForm, change_emailForm, change_usernameForm, change_passwordForm
+from .Forms import RegisterForm, LoginForm, change_emailForm, change_usernameForm
 from project.models import User, Recipe
 from sqlalchemy.exc import IntegrityError
 from flask_login import LoginManager, login_required, login_user, current_user, logout_user
@@ -93,6 +93,7 @@ def admin_view_users():
         return render_template('admin_view_users.html', users=users)
     return redirect(url_for('stocks.watch_list'))
 
+
 @users_blueprint.route('/change_username', methods=['GET','POST'])
 @login_required
 def change_username():
@@ -103,8 +104,8 @@ def change_username():
             stm = User.query.filter_by(id=current_user.id).first()
             stm.username = new_username
             db.session.commit()
-            flash("användar namnet har ändrats till{}".format(new_username), 'info')
-            return redirect(url_for('recipes.index'))
+            flash('Användar namnet har ändrats till {}'.format(new_username), 'info')
+            return redirect(url_for('users.user_profile'))
 
     return render_template('change_username.html', form=form )
 
@@ -122,23 +123,7 @@ def change_email():
                 stm.email = new_email
                 db.session.commit()
                 flash("Email adresen har ändrats till{}".format(new_email), 'info')
-                return redirect(url_for('recipes.index'))
+                return redirect(url_for('users.user_profile'))
 
     return render_template('change_email.html', form=form)
-
-@users_blueprint.route('/change_password', methods=['GET','POST'])
-@login_required
-def change_password():
-    form = change_passwordForm(request.form)
-    if request.method == 'POST':
-        if form.validate_on_submit():
-            user = current_user
-            if user is not None and user.is_correct_password(form.password.data):
-                user.password = form.new_password.data
-                print(user.new_password)
-                db.session.add(user)
-                db.session.commit()
-                return redirect(url_for('recipes.index'))
-                 
-    return render_template('change_password.html', form=form)
 

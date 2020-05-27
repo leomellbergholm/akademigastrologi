@@ -6,7 +6,7 @@
 #################
  
 from flask import render_template, Blueprint, request, flash, redirect, url_for, jsonify
-from project.models import Recipe, User, Ingredient, IngredientSchema
+from project.models import Recipe, User, Ingredient, IngredientSchema, RecipeHasIngredient
 from .Forms import AddRecipeForm
 from project import db, images
 from flask_login import LoginManager, login_required, login_user, current_user, logout_user
@@ -18,7 +18,7 @@ from flask_uploads import UploadSet, IMAGES, configure_uploads
 ################
  
 recipes_blueprint = Blueprint('recipes', __name__) 
- 
+
 ################
 #### routes ####
 ################
@@ -43,6 +43,20 @@ def add_recipe():
             new_recipe = Recipe(form.recipe_title.data, form.recipe_description.data, current_user.id, form.is_public.data, filename, url)
             db.session.add(new_recipe)
             db.session.commit()
+
+            # Lägg in varje ingrediens för recepete genom att loopa igenom det som skickades från formuläret
+            for ingredient in request.form.getlist("ingredient[]"):
+                ing = ingredient.split("-")
+                ingredient_id = ing[0]
+                quantity = ing[1]
+                new_recipe_ingredient = RecipeHasIngredient(new_recipe.id, ingredient_id, quantity)
+                db.session.add(new_recipe_ingredient)
+                db.session.commit()
+                
+                
+
+
+
             flash('New recipe, {}, added!'.format(new_recipe.recipe_title), 'success')
             return redirect(url_for('recipes.user_recipes'))
         else:
@@ -66,32 +80,62 @@ def user_recipes():
     all_user_recipes = Recipe.query.filter_by(user_id=current_user.id)
     return render_template('user_recipes.html', user_recipes=all_user_recipes)
 
+@recipes_blueprint.route('/edit/<recipe_id>', methods=['GET', 'POST'])
+@login_required
+def edit_recipe(recipe_id):
+    form = EditRecipeForm(active=True)
+    recipe_with_user = db.session.query(Recipe, User).join(User).filter(Recipe.id == recipe_id).first()
+    if request.method == 'POST':
+        if form.validate_on_submit():
+            if form.recipe_image.data is not None:
+                filename = images.save(request.files['recipe_image'])
+                url = images.url(filename)
+            
+            else:
+                filename = recipe_with_user.Recipe.image_filename
+                url = recipe_with_user.Recipe.image_url
 
+            uppdate = Recipe.query.filter_by(id=recipe_id).first()
+            uppdate.recipe_title = form.recipe_title.data 
+            uppdate.recipe_description = form.recipe_description.data 
+            uppdate.is_public = form.is_public.data
+            uppdate.image_filename = filename
+            uppdate.image_url = url
+            db.session.commit()
+            flash('Recept, {}, har ändrats!'.format(uppdate.recipe_title), 'success')
+            return redirect(url_for('recipes.user_recipes'))
+
+        else:
+            #flash_errors(form)
+            flash('ERROR! Recipe was not added.', 'error')
+
+    return render_template('edit_recipe.html', form=form, recipe=recipe_with_user, recipe_id=recipe_id)
 
 @recipes_blueprint.route('/recipe/<recipe_id>')
 def recipe_details(recipe_id):
     recipe_with_user = db.session.query(Recipe, User).join(User).filter(Recipe.id == recipe_id).first()
+    ingredients_for_recipe = db.session.query(Ingredient, RecipeHasIngredient.quantity).join(RecipeHasIngredient).filter(Recipe.id == RecipeHasIngredient.recipe_id).all()
+    results = ingredients_for_recipe
+    print(results)
     if recipe_with_user is not None:
         if recipe_with_user.Recipe.is_public:
-            return render_template('recipe_detail.html', recipe=recipe_with_user)
+            return render_template('recipe_detail.html', recipe=recipe_with_user, ingredients=results)
         else:
             if current_user.is_authenticated and recipe_with_user.Recipe.user_id == current_user.id:
-                return render_template('recipe_detail.html', recipe=recipe_with_user)
+                return render_template('recipe_detail.html', recipe=recipe_with_user, ingredients=results)
             else:
                 flash('Error! Incorrect permissions to access this recipe.', 'error')
     else:
         flash('Error! Recipe does not exist.', 'error')
     return redirect(url_for('recipes.public_recipes'))
 
-
 @recipes_blueprint.route('/video')
-def video():
+def videos():
     return render_template('video.html')
 
 @recipes_blueprint.route('/video/<video_id>')
 def videoplayer(video_id):
     return render_template('video_player.html', video_id=video_id)
-
 
 @recipes_blueprint.route('/media')
 def media():
