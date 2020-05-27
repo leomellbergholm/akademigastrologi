@@ -136,8 +136,8 @@ def change_password():
             if user is not None and user.is_correct_password(form.password.data):
                 user.password = form.new_password.data
                 print(user.new_password)
-                db.session.add(user)
-                db.session.commit()
+                #db.session.add(user)
+                #db.session.commit()
                 return redirect(url_for('recipes.index'))
                  
     return render_template('change_password.html', form=form)

@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+{% from "_form_macros.html" import render_field %}
+ 
+{% block content %}
+ 
+<!--This shows within the layout.html template-->
+<div class="container">
+<div class="add-recipe">
+  <div class="page-header">
+    <h2>Redigera recept</h2>
+  </div>
+  <form action="{{ url_for('recipes.edit_recipe', recipe_id=recipe_id) }}" method="post" enctype="multipart/form-data">
+    {{ form.csrf_token }}
+    <dl>
+      {{ render_field(form.recipe_title, value=recipe.Recipe.recipe_title) }}
+      {{ render_field(form.recipe_description, value= recipe.Recipe.recipe_description) }}
+      {{ render_field(form.recipe_image) }}
+      <p><b>Nuvarande bild:</b></p>
+      <img src="{{ recipe.Recipe.image_url }}" alt="{{ recipe.Recipe.image_filename }}" height="200" width="200"> 
+      {{ render_field(form.is_public) }}
+    </dl>
+    <button class="btn btn-sm btn-success" type="submit">Redigera recept</button>
+  </form> 
+</div>
+</div>
+  
+{% endblock %}
