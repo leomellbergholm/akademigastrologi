@@ -7,6 +7,29 @@
     <div class="recipe_info">
       <h2 class="recipe_descript_title">{{ recipe.Recipe.recipe_title }}</h2>
       <p class="recipe_descipt_descript">{{ recipe.Recipe.recipe_description }}</p>
+      <div class="row">
+        <div class="col-md-4">
+          <table class="table table-striped" id="owned_stock_table">
+            <thead>
+              <tr id="ingredient_table">
+                <th>Namn</th>
+                <th>Mängd</th>
+                <th>Mått</th>
+              </tr>
+            </thead>
+            <tbody>  
+              {% for ingredient in ingredients %}
+              <tr>
+                <td>{{ ingredient.Ingredient.name }}</td>
+                <td>{{ ingredient[1]}} </td>
+                <td>{{ ingredient.Ingredient.measurement_unit }}</td>
+              </tr>
+              {% endfor %} 
+            </tbody>
+          </table>
+        </div>
+      </div>
+      
     </div>
     {% if recipe.Recipe.image_url %}
       <img src="{{ recipe.Recipe.image_url }}" alt="{{ recipe.Recipe.image_filename }}" class="recipe_image">
@@ -39,4 +62,7 @@
   </div>
 </div>
 </div>
+<script>
+  
+</script>
 {% endblock %}

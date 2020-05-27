@@ -22,7 +22,7 @@
 </head>
 
 <body>
-  
+
   <!-- Static navbar -->
   <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
@@ -46,7 +46,7 @@
           <li><a href="{{ url_for('recipes.user_recipes') }}">Mina recept</a></li>
           <li><a href="{{ url_for('recipes.public_recipes') }}">Alla recept</a></li>
           <li><a href="{{ url_for('recipes.add_recipe') }}">Lägg till recept</a></li>
-          <li><a href="{{ url_for('recipes.video') }}">Matutbildning</a></li>
+          <li><a href="{{ url_for('recipes.videos') }}">Matlagningsutbildning</a></li>
           <li><a href="{{ url_for('recipes.media') }}">Galleri</a></li>
 
           {% if current_user.role == "admin" %}
@@ -104,9 +104,11 @@
   <!-- child template -->
   {% block content %}
   {% endblock %}
-  
+  <div class="footer">
+    <p>Akademi Gastrologi - 2020</p>
+  </div>
 
-  
+  </div><!-- /.container -->
 
   <!-- scripts -->
   <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
@@ -114,9 +116,5 @@
     integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
     crossorigin="anonymous"></script>
 </body>
-
-<div class="footer">
-  <p>Akademi Gastrologi - 2020</p>
-</div>
 
 </html>
