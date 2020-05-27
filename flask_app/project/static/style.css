@@ -9,7 +9,6 @@ body {
 	background: #ffffff;
 	font-weight: 500;
 	font-size: 18px;
-	padding-bottom: 75px;
 }
 
 button:focus {
@@ -57,14 +56,13 @@ button:focus {
 
 .footer {
 	text-align: center;
-	position: fixed;
+	position: relative;
 	left: 0em;
 	bottom: 0em;
 	width: 100%;
 	background-color: #333;
 	color: white;
 	padding: 5px;
-	margin-top: 55px;
 }
 
 .db-social .jumbotron {
@@ -262,12 +260,12 @@ button:focus {
 	border-width: 1px;
 	padding: 30px;
 	text-align: center;
-	
+	display: inline-block;
 	-webkit-box-shadow: 24px 25px 33px -3px rgba(0,0,0,0.42);
 	-moz-box-shadow: 24px 25px 33px -3px rgba(0,0,0,0.42);
 	box-shadow: 24px 25px 33px -3px rgba(0,0,0,0.42);
 	margin-top: 40px;
-	margin: auto;
+	margin-left: 33%;
 
 }
 

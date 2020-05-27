@@ -3,11 +3,7 @@
  
 {% block content %}
 
-<div>
-  <img src="../static/images/pig.png" alt="pig" style="height: 20%;width: 20%;float: right;padding-top: 100px;">
-  <img src="../static/images/grains.png" alt="grains" style="height: 10%;width: 10%;float: left;padding-top: 215px;">
-  <img src="../static/images/kebab.png" alt="kebab" style="height: 10%;width: 10%;float: left;padding-top: 75px;">
-</div>
+
 
 <!--This shows within the layout.html template-->
 <div class="container">
@@ -22,11 +18,11 @@
       {{ render_field(form.recipe_description, placeholder="Beskrivning av recept") }}
       <br>
       <p><strong>Ingredienser:</strong></p>
-      <div id="add_new_recipe">
-        <select id="ingredients_select" class="ingredients_select" name="ingredient_select"></select>
-        <input type="text" class="ingredient_amount"/>
-        <span class="unit_label" id="measurement_unit_label"></span>
-        <input type="hidden" name="ingredient[]" class="hidden-ingredient-input">
+      <div class="add_new_recipes" id="add_new_recipe">
+          <select class="ingredients_select" name="ingredient_select"></select>
+          <input type="text" class="ingredient_amount"/>
+          <span class="unit_label measurement_unit_label"></span>
+          <input type="hidden" name="ingredient[]" class="hidden-ingredient-input">
       </div>
 
       <button id="clone_ingredient" >Lägg till en till ingrediens</button>
@@ -59,7 +55,8 @@
     });
 
     $("#clone_ingredient").on("click", function(){
-      $('#add_new_recipe').clone(true).val('').insertAfter("#add_new_recipe");
+      let new_ingredient = $('.add_new_recipes:last').clone(true);
+      $(new_ingredient).insertAfter(".add_new_recipes:last");
     });
 
 
@@ -73,7 +70,7 @@
 
       /* Populate select */
       $.each(ingredients, function(index, item){
-        $("#ingredients_select").append(
+        $(".ingredients_select").append(
           $("<option></option>")
             .text(item.name)
             .val(item.id)  
@@ -89,13 +86,13 @@
           return current_ingredient.id == selected_ingredient_id
         })
 
-        $("#measurement_unit_label").text(ingredient.measurement_unit)
+        $(".measurement_unit_label:last").text(ingredient.measurement_unit)
         
         
       };
       
 
-      $("#ingredients_select").change(on_ingredients_select_change)
+      $(".ingredients_select").change(on_ingredients_select_change)
 
 
     }) 
