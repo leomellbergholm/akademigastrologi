@@ -56,13 +56,14 @@ button:focus {
 
 .footer {
 	text-align: center;
-	position: relative;
+	position: fixed;
 	left: 0em;
 	bottom: 0em;
 	width: 100%;
 	background-color: #333;
 	color: white;
 	padding: 5px;
+	margin-top: 55px;
 }
 
 .db-social .jumbotron {
@@ -265,7 +266,7 @@ button:focus {
 	-moz-box-shadow: 24px 25px 33px -3px rgba(0,0,0,0.42);
 	box-shadow: 24px 25px 33px -3px rgba(0,0,0,0.42);
 	margin-top: 40px;
-	margin-left: 33%;
+	margin: auto;
 
 }
 
