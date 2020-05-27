@@ -2,20 +2,25 @@
 {% from "_form_macros.html" import render_field %}
  
 {% block content %}
- 
+<div>
+  <img src="../static/images/pig.png" alt="pig" style="height: 20%;width: 20%;float: right;padding-top: 100px;">
+  <img src="../static/images/grains.png" alt="grains" style="height: 10%;width: 10%;float: left;padding-top: 215px;">
+  <img src="../static/images/kebab.png" alt="kebab" style="height: 10%;width: 10%;float: left;padding-top: 75px;">
+</div>
 <!--This shows within the layout.html template-->
+<div class="container">
 <div class="user-registration">
   <div class="page-header">
-    <h2>Bytt email</h2>
+    <h2>Byt email</h2>
   </div>
 <form action="{{ url_for('users.change_email') }}" method="post">
     {{ form.csrf_token }}
     <dl>
       {{ render_field(form.password, placeholder="Lösenord") }}
-      {{ render_field(form.email, placeholder="Ny_Email") }}
+      {{ render_field(form.email, placeholder="Ny Email") }}
     </dl>
-    <button class="btn btn-sm btn-success" type="submit">Bytt email</button>
+    <button class="btn btn-sm btn-success" type="submit">Byt email</button>
   </form>
 </div>
-  
+</div>  
 {% endblock %}
