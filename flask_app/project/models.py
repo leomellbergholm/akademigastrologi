@@ -1,4 +1,4 @@
-#Authors: Leo M. Holm & Axel Holm
+#Authors: Leo M. Holm & Axel Holm & Tamim Nasir
 #Coding: utf-8
 
 from project import db, bcrypt, ma
@@ -8,7 +8,43 @@ from sqlalchemy import create_engine
 
 #databas with sqlalchemy
 engine = create_engine('postgresql://ah8140:pzvieemm@pgserver.mah.se/akademigastrologi')
+# engine = create_engine('postgresql://aj8578:72w0ljxi@pgserver.mah.se/akademigastrologi2')
 
+class Discussion(db.Model):
+    __tablename__="discussion"
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    comment = db.Column(db.String, nullable=False)
+    created = db.Column(db.DateTime, nullable=True)
+    forum_id = db.Column(db.Integer, db.ForeignKey('forums.id'))
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+
+    def __init__(self, comment, forum_id, user_id):
+        self.comment = comment
+        self.created=datetime.now()
+        self.forum_id = forum_id
+        self.user_id = user_id
+
+    def __repr__(self):
+        return '<id: {}, comment: {}, forum_id: {}, user_id: {}>'.format(self.id, self.comment, self.forum_id, self.user_id)
+
+
+class Forum(db.Model):
+
+    __tablename__="forums"
+    id = db.Column(db.Integer, primary_key=True)
+    forum_title = db.Column(db.String, nullable=False)
+    forum_description = db.Column(db.String, nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    created = db.Column(db.DateTime, nullable=True)
+
+    def __init__(self, title, description, user_id):
+        self.forum_title = title
+        self.forum_description = description
+        self.user_id = user_id
+        self.created = datetime.now()
+
+    def __repr__(self):
+        return '<id: {}, title: {}, description: {}>'.format(self.id, self.forum_title, self.forum_description)
 
 class Ingredient(db.Model):
 
@@ -126,4 +162,4 @@ class User(db.Model):
         return str(self.id)
  
     def __repr__(self):
-        return '<User {0}>'.format(self.name)
+        return '<User {0}>'.format(self.username)

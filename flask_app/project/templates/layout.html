@@ -1,5 +1,5 @@
 <!--ALL FOLLOWING IS THE LAYOUT FOR EVERY PAGE IN USE including navbars, footer and flash messages for success and errors-->
-<!--Authors:Leo.M.H&Axel.H | Coding: utf-8-->
+<!--Authors:Leo.M.H&Axel.H&Tamim.N | Coding: utf-8-->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -48,7 +48,7 @@
           <li><a href="{{ url_for('recipes.add_recipe') }}">Lägg till recept</a></li>
           <li><a href="{{ url_for('recipes.videos') }}">Matlagningsutbildning</a></li>
           <li><a href="{{ url_for('recipes.media') }}">Galleri</a></li>
-
+          <li><a href="{{ url_for('forums.forum') }}">Forums</a></li>
           {% if current_user.role == "admin" %}
           <li><a href="{{ url_for('users.admin_view_users') }}">View Users (Admin)</a></li>
           {% endif %}
