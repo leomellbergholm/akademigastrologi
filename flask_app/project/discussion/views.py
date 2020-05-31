@@ -23,7 +23,7 @@ discussion_blueprint = Blueprint('discussion', __name__)
 ################
 @discussion_blueprint.route('/discussion/<forum_id>')
 def discussion(forum_id):
-    discussions = db.session.query(Discussion, User).join(User).filter(Discussion.forum_id == forum_id)
+    discussions = db.session.query(Discussion, User).join(User).filter(Discussion.forum_id == forum_id).order_by(Discussion.id.asc())
     forum_infos = db.session.query(Forum, User).join(User).filter(Forum.id == forum_id)
     return render_template('discussion.html', discussions=discussions, forum_infos=forum_infos, forum_no=forum_id)
 
