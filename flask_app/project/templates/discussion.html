@@ -43,7 +43,7 @@
             </div>
             <div class="row">
                 <form action="{{ url_for('discussion.add_comment', forum_id=forum_no) }}" method="post">
-                    <textarea name="comment" id="comment" cols="60" rows="1"></textarea>
+                    <textarea class="myinput" name="comment" id="comment" cols="60" rows="1"></textarea>
                     <input type="submit" value="Submit">
                 </form>
             </div>
