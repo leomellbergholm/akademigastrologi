@@ -1,18 +1,22 @@
+<!--Author: Anton Hellberg | Coding: utf-8-->
+
 {% extends "layout.html" %}
 {% from "_form_macros.html" import render_field %}
  
 {% block content %}
- 
-<!--This shows within the layout.html template-->
-<div>
+ <!--This shows within the layout.html template-->
+
+ <div>
   <img src="../static/images/pig.png" alt="pig" style="height: 20%;width: 20%;float: right;padding-top: 100px;">
   <img src="../static/images/grains.png" alt="grains" style="height: 10%;width: 10%;float: left;padding-top: 215px;">
   <img src="../static/images/kebab.png" alt="kebab" style="height: 10%;width: 10%;float: left;padding-top: 75px;">
 </div>
+<!-- Frame for displaying videos -->
 <div class="video">
   <iframe width="900" height="500" src="https://www.youtube.com/embed/{{video_id}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
-<div class="video">
+<!-- Button to close video and return to video page-->
+<div class="videoplayer">
   <a class="btn btn-sm btn-success" href="/video">&lt;-Tillbaka</a>
 </div>
   

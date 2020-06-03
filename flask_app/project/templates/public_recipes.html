@@ -1,34 +1,35 @@
+<!--Authors:Leo.M.H&Axel.H | Coding: utf-8-->
+
 {% extends "layout.html" %}
 {% block content %}
 <!--This shows within the layout.html template-->
 <div>
-  <img src="../static/images/pig.png" alt="pig" style="height: 20%;width: 20%;float: right;padding-top: 100px;">
   <img src="../static/images/grains.png" alt="grains" style="height: 10%;width: 10%;float: left;padding-top: 215px;">
-  <img src="../static/images/kebab.png" alt="kebab" style="height: 10%;width: 10%;float: left;padding-top: 75px;">
+  <img src="../static/images/grains.png" alt="grains" style="height: 10%;width: 10%;float: right;padding-top: 215px;">
 </div> 
 <div class="container">
-<div class="user-profile">
-  <div class="page-header">
-    <h2>Alla Recept</h2>
+  <div class="user-profile">
+    <div class="page-header">
+      <h2>Alla Recept</h2>
+    </div>
+    <!-- Table for displaying public recipes -->
+    <table class="table table-striped" id="owned_stock_table">
+      <thead>
+        <tr>
+          <th>Titel</th>
+          <th>Beskrivning</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for recipe in public_recipes %}
+        <tr>
+          <td><a href="{{ url_for('recipes.recipe_details', recipe_id=recipe.id) }}">{{ recipe.recipe_title }}</a></td>
+          <td><a href="{{ url_for('recipes.recipe_details', recipe_id=recipe.id) }}">{{ recipe.recipe_description }}</a></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
   </div>
- 
-  <table class="table table-striped" id="owned_stock_table">
-    <thead>
-      <tr>
-        <th>Titel</th>
-        <th>Beskrivning</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for recipe in public_recipes %}
-      <tr>
-        <td><a href="{{ url_for('recipes.recipe_details', recipe_id=recipe.id) }}">{{ recipe.recipe_title }}</a></td>
-        <td><a href="{{ url_for('recipes.recipe_details', recipe_id=recipe.id) }}">{{ recipe.recipe_description }}</a></td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
-</div>
 </div>
  
 {% endblock %}

@@ -1,12 +1,19 @@
+<!--Authors:Leo.M.H&Axel.H | Coding: utf-8-->
+
 {% extends "layout.html" %}
 {% block content %}
 <!--This shows within the layout.html template-->
+<div>
+<img src="../static/images/kebab.png" alt="kebab" style="height: 10%;width: 10%;float: left;padding-top: 75px;">
+<img src="../static/images/kebab.png" alt="kebab" style="height: 10%;width: 10%;float: right;padding-top: 75px;">
+</div>
+
 <div class="container">
   <div class="user-profile">
     <div class="page-header">
       <h2>Dina recept</h2>
     </div>
-
+    <!-- Table for displaying user recipes -->
     <table class="table table-striped" id="owned_stock_table">
       <thead>
         <tr>

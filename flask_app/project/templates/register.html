@@ -1,31 +1,36 @@
+<!--Authors:Leo.M.H&Axel.H | Coding: utf-8-->
+
 {% extends "layout.html" %}
 {% from "_form_macros.html" import render_field %}
  
 {% block content %}
 <!--This shows within the layout.html template-->
+
 <div>
   <img src="../static/images/pig.png" alt="pig" style="height: 20%;width: 20%;float: right;padding-top: 100px;">
   <img src="../static/images/grains.png" alt="grains" style="height: 10%;width: 10%;float: left;padding-top: 215px;">
   <img src="../static/images/kebab.png" alt="kebab" style="height: 10%;width: 10%;float: left;padding-top: 75px;">
 </div>
+
 <div class="container">
-<div class="header">
-  <h2>Registrera nytt konto!</h2>
-</div>
-<div class="user-registration">
-<form action="{{ url_for('users.register') }}" method="post" class="loginstyle">
-    {{ form.csrf_token }}
-    <dl>
-      {{ render_field(form.username, placeholder="Användarnamn", id="test1") }}
-      <br>
-      {{ render_field(form.email, placeholder="Email", id="test1") }}
-      <br>
-      {{ render_field(form.password, placeholder="Lösenord", id="test1") }}
-      <br>
-      {{ render_field(form.confirm, placeholder="Bekräfta lösenord", id="test1") }}
-    </dl>
-    <button class="btn btn-sm btn-success" type="submit">Skapa nytt konto!</button>
-  </form>
-</div>
+  <div class="header">
+    <h2>Registrera nytt konto!</h2>
+  </div>
+  <!-- Form for registering users -->
+  <div class="user-registration">
+  <form action="{{ url_for('users.register') }}" method="post" class="loginstyle">
+      {{ form.csrf_token }}
+      <dl>
+        {{ render_field(form.username, placeholder="Användarnamn", id="loginregister") }}
+        <br>
+        {{ render_field(form.email, placeholder="Email", id="loginregister") }}
+        <br>
+        {{ render_field(form.password, placeholder="Lösenord", id="loginregister") }}
+        <br>
+        {{ render_field(form.confirm, placeholder="Bekräfta lösenord", id="loginregister") }}
+      </dl>
+      <button class="btn btn-sm btn-success" type="submit">Skapa nytt konto!</button>
+    </form>
+  </div>
 </div>
 {% endblock %}

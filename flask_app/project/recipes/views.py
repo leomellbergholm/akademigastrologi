@@ -1,9 +1,9 @@
 #Authors: Leo M. Holm & Axel Holm
 #Coding: utf-8
 
-#################
+
 #### imports ####
-#################
+
  
 from flask import render_template, Blueprint, request, flash, redirect, url_for, jsonify
 from project.models import Recipe, User, Ingredient, IngredientSchema, RecipeHasIngredient
@@ -13,15 +13,15 @@ from flask_login import LoginManager, login_required, login_user, current_user, 
 from flask_uploads import UploadSet, IMAGES, configure_uploads
 
 
-################
+
 #### config ####
-################
+
  
 recipes_blueprint = Blueprint('recipes', __name__) 
 
-################
+
 #### routes ####
-################
+
 @recipes_blueprint.route('/')
 def index():
     all_public_recipes = Recipe.query.filter_by(is_public=True)

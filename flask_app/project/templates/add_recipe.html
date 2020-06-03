@@ -1,3 +1,5 @@
+<!--Authors:Leo.M.H&Axel.H | Coding: utf-8-->
+
 {% extends "layout.html" %}
 {% from "_form_macros.html" import render_field %}
  
@@ -6,65 +8,72 @@
 
 
 <!--This shows within the layout.html template-->
-<div class="container">
-<div class="add-recipe">
-  <div class="page-header">
-    <h2>Lägg till ett nytt recept</h2>
-  </div>
-  <form action="{{ url_for('recipes.add_recipe', ingredients=ingredients) }}" method="post" enctype="multipart/form-data">
-    {{ form.csrf_token }}
-    <dl>
-      {{ render_field(form.recipe_title, placeholder="Titel på recept") }}
-      {{ render_field(form.recipe_description, placeholder="Beskrivning av recept") }}
-      <br>
-      <p><strong>Ingredienser:</strong></p>
-      <div class="add_new_recipes" id="add_new_recipe">
-          <select class="ingredients_select" name="ingredient_select"></select>
-          <input type="text" class="ingredient_amount"/>
-          <span class="unit_label measurement_unit_label"></span>
-          <input type="hidden" name="ingredient[]" class="hidden-ingredient-input">
-      </div>
-
-      <button id="clone_ingredient" >Lägg till en till ingrediens</button>
-      
-      <br></br>
-      
-      {{ render_field(form.recipe_image) }}
-      <br>
-      {{ render_field(form.is_public) }}
-    </dl>
-    <button class="btn btn-sm btn-success" type="submit">Lägg till recept</button>
-  </form>
-  
+<div>
+  <img src="../static/images/pig.png" alt="pig" style="height: 20%;width: 20%;float: right;padding-top: 100px;padding-left: 15px;margin-right: 200px;">
 </div>
+
+<div class="container">
+  <div class="add-recipe">
+    <div class="page-header">
+      <h2>Lägg till ett nytt recept</h2>
+    </div>
+    <!-- Form to blueprint with data sent -->
+    <form action="{{ url_for('recipes.add_recipe', ingredients=ingredients) }}" method="post" enctype="multipart/form-data">
+      {{ form.csrf_token }}
+      <dl>
+        {{ render_field(form.recipe_title, placeholder="Titel på recept") }}
+        {{ render_field(form.recipe_description, placeholder="Beskrivning av recept") }}
+        <br>
+        <p><strong>Ingredienser:</strong></p>
+        <!--Add new ingredient inputs-->
+        <div class="add_new_recipes" id="add_new_recipe">
+            <select class="ingredients_select" name="ingredient_select"></select>
+            <input type="text" class="ingredient_amount"/>
+            <span class="unit_label measurement_unit_label"></span>
+            <input type="hidden" name="ingredient[]" class="hidden-ingredient-input">
+        </div>
+        <br>
+        <!-- Add new ingredient button-->
+        <button id="clone_ingredient" >Lägg till en till ingrediens</button>
+        
+        <br></br>
+        
+        {{ render_field(form.recipe_image) }}
+        <br>
+        {{ render_field(form.is_public) }}
+      </dl>
+      <!-- Button for submitting recipe-->
+      <button class="btn btn-sm btn-success" type="submit">Lägg till recept</button>
+    </form> 
+  </div>
 </div>
 
 <script>
   
   $(document).ready(function() {
-
+    /* Collect values and text on change from fields */
     $("body").on("change",".ingredients_select, .ingredient_amount", function() {
       let ingredientId = $(this).parent().children(".ingredients_select").val();
       let amount = $(this).parent().children(".ingredient_amount").val();
       let unit = $(this).parent().children(".unit_label").text();
 
-
+      /* Add values and text to hidden input */
       let inputValue = ingredientId + "-" + amount + "-" + unit;
-      console.log(inputValue);
       $(this).parent().children(".hidden-ingredient-input").val(inputValue);
     });
-
+    
+    /* Clone new ingredient from last */
     $("#clone_ingredient").on("click", function(){
       let new_ingredient = $('.add_new_recipes:last').clone(true);
       $(new_ingredient).insertAfter(".add_new_recipes:last");
     });
 
-
+    /* Clone with default value for new ingredient */
     $("#clone_ingredient").on("click", function(event){
       event.preventDefault();
     });
     
-    
+    /* Get ingredient list */
     $.getJSON($SCRIPT_ROOT + "/ingredientlist", null, function(data) {
       const ingredients = data.ingredients
 
@@ -85,13 +94,13 @@
         const ingredient = ingredients.find(function(current_ingredient) {  
           return current_ingredient.id == selected_ingredient_id
         })
-
+        /* Add measurement_label */
         $(".measurement_unit_label:last").text(ingredient.measurement_unit)
         
         
       };
       
-
+      /* On change run function for id match*/
       $(".ingredients_select").change(on_ingredients_select_change)
 
 

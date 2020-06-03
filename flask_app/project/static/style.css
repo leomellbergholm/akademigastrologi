@@ -150,6 +150,7 @@ button:focus {
 	margin-top: 4rem;
 	margin-bottom: 1rem;
 	line-height: 1.8rem;
+	margin-right: 11rem;
 }
 .db-social h2 {
 	color: #2c304d;
@@ -164,6 +165,12 @@ button:focus {
 .db-social .follow .btn {
 	padding: 10px 30px;
 }
+
+.videoplayer {
+	text-align: center;
+	margin-top: 20px;
+}
+
 .btn:not(:disabled):not(.disabled) {
 	cursor: pointer;
 }
@@ -252,25 +259,22 @@ button:focus {
     padding: 20px;
 }
 
-/* #formtest {
-	color: red;
-} */
-
 .user-registration {
 	border-style: solid;
 	border-radius: 25px;
 	border-width: 1px;
+	display: inline-block;
 	padding: 30px;
 	text-align: center;
 	-webkit-box-shadow: 24px 25px 33px -3px rgba(0,0,0,0.42);
 	-moz-box-shadow: 24px 25px 33px -3px rgba(0,0,0,0.42);
 	box-shadow: 24px 25px 33px -3px rgba(0,0,0,0.42);
 	margin-top: 40px;
-	margin: auto;
+	margin-left: 26%;
 
 }
 
-#test1 { 
+#loginregister { 
 	border-color:#cccccc; 
 	padding:7px; 
 	font-size:24px; 
@@ -321,13 +325,19 @@ button:focus {
 }
 
 .video {
-	max-width: 1300px;
 	margin: auto;
+	text-align: center;
+	list-style-type: none;
+}
+
+.diska {
+	margin-right: 100px;
 }
 
 .image{
     display: flex;
 	flex-wrap: wrap;
+	justify-content: center;
 }
 
 .image img {

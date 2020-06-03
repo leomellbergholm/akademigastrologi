@@ -1,71 +1,65 @@
+<!--Authors:Leo.M.H&Axel.H | Coding: utf-8-->
+
 {% extends "layout.html" %}
 {% block content %}
 <!--This shows within the layout.html template--> 
-<div>
-  <img src="../static/images/pig.png" alt="pig" style="height: 20%;width: 20%;float: right;padding-top: 100px;">
-  <img src="../static/images/grains.png" alt="grains" style="height: 10%;width: 10%;float: left;padding-top: 215px;">
-  <img src="../static/images/kebab.png" alt="kebab" style="height: 10%;width: 10%;float: left;padding-top: 75px;">
-</div>
+
 <div class="container">
-<div class="user-profile">
-  <div class="page-header">
-    <div class="recipe_info">
-      <h2 class="recipe_descript_title">{{ recipe.Recipe.recipe_title }}</h2>
-      <p class="recipe_descipt_descript">{{ recipe.Recipe.recipe_description }}</p>
-      <div class="row">
-        <div class="col-md-4">
-          <table class="table table-striped" id="owned_stock_table">
-            <thead>
-              <tr id="ingredient_table">
-                <th>Namn</th>
-                <th>Mängd</th>
-                <th>Mått</th>
-              </tr>
-            </thead>
-            <tbody>  
-              {% for ingredient in ingredients %}
-              <tr>
-                <td>{{ ingredient.Ingredient.name }}</td>
-                <td>{{ ingredient[1]}} </td>
-                <td>{{ ingredient.Ingredient.measurement_unit }}</td>
-              </tr>
-              {% endfor %} 
-            </tbody>
-          </table>
+  <div class="user-profile">
+    <div class="page-header">
+      <!-- Table for displaying recipe details for specific recipe-->
+      <div class="recipe_info">
+        <h2 class="recipe_descript_title">{{ recipe.Recipe.recipe_title }}</h2>
+        <p class="recipe_descipt_descript">{{ recipe.Recipe.recipe_description }}</p>
+        <div class="row">
+          <div class="col-md-4">
+            <table class="table table-striped" id="owned_stock_table">
+              <thead>
+                <tr id="ingredient_table">
+                  <th>Namn</th>
+                  <th>Mängd</th>
+                  <th>Mått</th>
+                </tr>
+              </thead>
+              <tbody>  
+                {% for ingredient in ingredients %}
+                <tr>
+                  <td>{{ ingredient.Ingredient.name }}</td>
+                  <td>{{ ingredient[1]}} </td>
+                  <td>{{ ingredient.Ingredient.measurement_unit }}</td>
+                </tr>
+                {% endfor %} 
+              </tbody>
+            </table>
+          </div>
         </div>
+        
       </div>
-      
-    </div>
-    {% if recipe.Recipe.image_url %}
-      <img src="{{ recipe.Recipe.image_url }}" alt="{{ recipe.Recipe.image_filename }}" class="recipe_image">
-    {% endif %}
-  </div>
-
-    {% if recipe.Recipe.user_id == user.id %} 
-    <div>
-      <a class="btn btn-sm btn-success btn-margin" href="/edit/{{recipe_id}}">Redigera resept</a> 
-    </div>
-    {% endif %}
-
-  <div class="row">
-    <div class="panel panel-primary" id="panelrecipe">
-      <div class="panel-heading">Public or Private</div>
-      {% if recipe.Recipe.is_public %}
-        <div class="panel-body">Public</div>
-      {% else %}
-        <div class="panel-body">Private</div>
+      <!-- Check recipe image and display-->
+      {% if recipe.Recipe.image_url %}
+        <img src="{{ recipe.Recipe.image_url }}" alt="{{ recipe.Recipe.image_filename }}" class="recipe_image">
       {% endif %}
     </div>
- 
-    <div class="panel panel-primary" id="panelrecipe">
-      <div class="panel-heading">User</div>
-      <div class="panel-body">{{ recipe.User.username }}</div>
+    <div class="row">
+      <!--Panels for displaying status of recipe and owener-->
+      <div class="panel panel-primary" id="panelrecipe">
+        <div class="panel-heading">Public or Private</div>
+        {% if recipe.Recipe.is_public %}
+          <div class="panel-body">Public</div>
+        {% else %}
+          <div class="panel-body">Private</div>
+        {% endif %}
+      </div>
+  
+      <div class="panel panel-primary" id="panelrecipe">
+        <div class="panel-heading">User</div>
+        <div class="panel-body">{{ recipe.User.username }}</div>
+      </div>
+  
+      
+  
     </div>
- 
-    
- 
   </div>
-</div>
 </div>
 <script>
   
