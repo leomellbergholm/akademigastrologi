@@ -1,0 +1,82 @@
+{% extends "layout.html" %}
+{% block content %}
+
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
+            <li class="breadcrumb-item"><a href="/forums">Forum</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Discussion</li>
+        </ol>
+    </nav>
+    <main>
+        <div class="container">
+            {%for forum in forum_infos%}
+            <div class="page-header">
+                <h2>{{forum.Forum.forum_title}}</h2>
+            </div>
+            <!--Question-->
+            <div class="row">
+                <div class="col-xl question">
+                    <div class="q_info">
+                        <div class="row">
+                            <div class="col-xs-3 col-sm-2 col-lg-1">
+                                <div class="profile_img"></div>
+                            </div>
+                            <div class="col-xs-9 col-sm-10 col-lg-11">
+                                <div class="row">
+                                    {{forum.User.username}}
+                                </div>
+                                <div class="row">
+                                    {{forum.Forum.created.strftime("%A %B %d, %Y, %I:%M:%S %p")}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="q_content">
+                        {{forum.Forum.forum_description}}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            <div class="row">
+                <h5>Leave a comment</h5>
+            </div>
+            <div class="row">
+                <form action="{{ url_for('discussion.add_comment', forum_id=forum_no) }}" method="post">
+                    <textarea name="comment" id="comment" cols="60" rows="1"></textarea>
+                    <input type="submit" value="Submit">
+                </form>
+            </div>
+            {% if discussions %}
+            <div class="row">
+                <h5>Answers</h5>
+            </div>
+            <!-- Answers -->
+
+            <div class="row">
+                {%for discussion in discussions%}
+                <div class="answers">
+                    <div class="row">
+                        <div class="col-xs-3 col-sm-2 col-lg-1">
+                            <div class="profile_img"></div>
+                        </div>
+                        <div class="col-xs-9 col-sm-10 col-lg-11">
+                            <div class="row">
+                                {{discussion.User.username}}
+                            </div>
+                            <div class="row">
+                                {{discussion.Discussion.created.strftime("%A %B %d, %Y, %I:%M:%S %p")}}
+                            </div>
+                        </div>
+                    </div>
+                    {{discussion.Discussion.comment}}
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+        </div>
+    </main>
+    <!-- Footer -->
+
+{% endblock %}

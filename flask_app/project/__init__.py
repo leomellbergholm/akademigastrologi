@@ -1,4 +1,4 @@
-#Authors: Leo M. Holm & Axel Holm
+#Authors: Leo M. Holm & Axel Holm & Tamim Nasir
 #Coding: utf-8
 
 #### imports ####
@@ -44,10 +44,14 @@ def load_user(user_id):
  
 from project.users.views import users_blueprint
 from project.recipes.views import recipes_blueprint
- 
-# Register the blueprints
+from project.forums.views import forums_blueprint
+from project.discussion.views import discussion_blueprint
+
+# register the blueprints
 app.register_blueprint(users_blueprint)
 app.register_blueprint(recipes_blueprint)
+app.register_blueprint(forums_blueprint)
+app.register_blueprint(discussion_blueprint)
 
 
 
