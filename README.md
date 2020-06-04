@@ -1,3 +1,5 @@
+https://github.com/leomellbergholm/akademigastrologi
+
 Hur kör du våran kod?
 Kräver: Python 3.3 - Ladda ner om din version inte stämmer. 
 Kan verifieras i din text-editor med: python --version
@@ -43,7 +45,7 @@ Tips: Du kan gå till mappen och kopiera hela sökvägen för att sedan klistra 
 Sökvägen bör likna: C:\Users\[Användarnamn]\Documents\GitHub\akademigastrologi\app_data\venv\Scripts
 
 Gå in i CMD och skriv “cd + sökvägen ovan” så kommer du till Scripts-mappen i projektmappen.
-Skriv sedan: \activate
+Skriv sedan: activate
 Du vet att du lyckats när det kommer upp “venv” framför din rad inne i CMD. 
 
 6: Ladda ner requirements:
@@ -58,9 +60,9 @@ Vänta tills samtliga objekt laddats ner.
 
 När du lyckats med de tidigare stegen skriver du i samma mapp directory som tidigare följande kommandon: 
 
-set flask_app=run.py -> Enter 
-set flask_env=development -> Enter 
-flask run -> Enter
+set flask_app=run.py sen klicka Enter 
+set flask_env=development sen klicka Enter 
+flask run sen klicka enter
 
 Efter detta bör hemsidan börja köra på din localhost och du bör få ett meddelande som liknar: 'Running on http://127.0.0.1:5000/'
 
