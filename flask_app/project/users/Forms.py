@@ -19,7 +19,12 @@ class LoginForm(Form):
 
 class change_emailForm(Form):
     password = PasswordField('Lösenord', validators=[DataRequired()])
-    email = StringField('Email', validators=[DataRequired(), Email(), Length(min=6, max=40)])
+    email = StringField('Ny Email', validators=[DataRequired(), Email(), Length(min=6, max=40)])
 
 class change_usernameForm(Form):
     username = StringField('Användarnamn', validators=[DataRequired(), Length(min=2, max=20)])
+
+class change_passwordForm(Form):
+    password = PasswordField('Lösenord', validators=[DataRequired()])
+    new_password = PasswordField('Nytt Lösenord', validators=[DataRequired(), Length(min=6, max=40)])
+    confirm = PasswordField('Bekräfta lösenord', validators=[DataRequired(), EqualTo('new_password')])

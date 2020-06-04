@@ -6,7 +6,7 @@
 
 from flask import Flask, render_template, Blueprint, request, flash, redirect, url_for, abort
 from project import db #, mail
-from .Forms import RegisterForm, LoginForm, change_emailForm, change_usernameForm
+from .Forms import RegisterForm, LoginForm, change_emailForm, change_usernameForm, change_passwordForm
 from project.models import User, Recipe
 from sqlalchemy.exc import IntegrityError
 from flask_login import LoginManager, login_required, login_user, current_user, logout_user
@@ -122,8 +122,24 @@ def change_email():
                 stm = User.query.filter_by(id=current_user.id).first()
                 stm.email = new_email
                 db.session.commit()
-                flash("Email adresen har ändrats till{}".format(new_email), 'info')
+                flash("Email adresen har ändrats till {}".format(new_email), 'info')
                 return redirect(url_for('users.user_profile'))
 
     return render_template('change_email.html', form=form)
 
+@users_blueprint.route('/change_password', methods=['GET','POST'])
+@login_required
+def change_password():
+    form = change_passwordForm(request.form)
+    if request.method == 'POST':
+        if form.validate_on_submit():
+            user = current_user
+            if user is not None and user.is_correct_password(form.password.data):
+                new_password = form.new_password.data
+                stm = User.query.filter_by(id=current_user.id).first()
+                stm.password = new_password
+                #db.session.commit()
+                flash("Lösenordet har ändrats", 'info')
+                return redirect(url_for('recipes.user_profile'))
+                 
+    return render_template('change_password.html', form=form)
